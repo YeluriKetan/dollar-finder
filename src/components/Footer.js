@@ -41,17 +41,29 @@ function Footer() {
           <h3 className="footer-heading">Yeluri Ketan</h3>
           <ul className="footer-list">
             <li>
-              <a href="https://github.com/YeluriKetan" target="_blank">
+              <a
+                href="https://github.com/YeluriKetan"
+                target="_blank"
+                rel="noreferrer"
+              >
                 Github
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/ketanyeluri" target="_blank">
+              <a
+                href="https://www.linkedin.com/in/ketanyeluri"
+                target="_blank"
+                rel="noreferrer"
+              >
                 LinkedIn
               </a>
             </li>
             <li>
-              <a href="mailto: ketany309@gmail.com" target="_blank">
+              <a
+                href="mailto: ketany309@gmail.com"
+                target="_blank"
+                rel="noreferrer"
+              >
                 Email
               </a>
             </li>
