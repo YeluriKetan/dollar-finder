@@ -1,0 +1,70 @@
+@font-face {
+  font-family: "JetBrains Mono";
+  src: local("JetBrains Mono"),
+    url(./../fonts/JetBrainsMono-ExtraLight.ttf) format("truetype");
+}
+
+.footer {
+  width: 100vw;
+  height: 200px;
+  background-color: #413c58;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.footer-info-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.footer-heading {
+  color: #a3c4bc;
+  padding: 0;
+  margin: 10px 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: x-large;
+  font-weight: 1000;
+}
+.footer-column {
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
+  margin: 0;
+}
+.footer-list {
+  padding: 0;
+  list-style: none;
+  line-height: 1.6;
+  margin: 0;
+}
+.footer-list > li > a {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  color: white;
+  font-family: "Overpass Mono", monospace;
+  font-size: 16px;
+}
+
+.footer-list > li > a:hover {
+  color: #a3c4bc;
+}
+.footer-para {
+  padding: 0;
+  margin: 0;
+  color: white;
+  word-wrap: normal;
+  font-family: "Overpass Mono", monospace;
+  font-size: 16px;
+}
+
+.copyright {
+  font-family: "JetBrains Mono", sans-serif;
+  font-size: smaller;
+  color: white;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  display: block;
+}

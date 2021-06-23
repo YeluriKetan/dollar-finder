@@ -1,0 +1,66 @@
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"),
+    url(./../fonts/Montserrat-SemiBold.ttf) format("truetype");
+}
+
+.about-main {
+  background-color: #a3c4bc;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.about-section {
+  margin: 100px 0;
+  padding: 0;
+  width: 100vw;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.about-article {
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.section-heading {
+  margin: 100px 0;
+  padding: 0;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 36px;
+}
+.article-heading {
+  margin: 20px;
+  padding: 0;
+  font-family: "Teko", monospace;
+  font-size: 30px;
+  text-align: center;
+}
+.proposal-img {
+  width: 500px;
+}
+.proposal-video {
+  width: 707px;
+  height: 398px;
+}
+.about-icon-link {
+  text-decoration: none;
+  height: 70px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 35px;
+}
+.about-icon-link:hover {
+  background-color: #85a19b;
+}

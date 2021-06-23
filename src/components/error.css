@@ -1,0 +1,19 @@
+.error-main {
+  background-color: #a3c4bc;
+  width: 100vw;
+  height: 600px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.message {
+  margin: 0 0;
+  padding: 0;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 36px;
+}
