@@ -4,6 +4,11 @@
 
 Dollar Finder is a platform that facilitates sharing of information regarding better priced daily necessities and utilities, so that students can easily share and see deals that will help save money.
 
+
+## Web Version
+
+Access the latest stable version of [Dollar Finder](https://modest-liskov-638a8a.netlify.app/). 
+
 ## Tech
 
 Dollar Finder uses the following tech stack:
