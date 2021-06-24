@@ -50,3 +50,6 @@
 .header-nav-link:hover {
   color: #a3c4bc;
 }
+.header-active-nav-link {
+  color: #a3c4bc;
+}

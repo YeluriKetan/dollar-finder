@@ -4,11 +4,12 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 import About from "./components/About";
 import Error from "./components/Error";
-import Login from "./components/Login";
+import Account from "./components/Account";
 import "./app.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
+  const [loginState, setLoginState] = React.useState(false);
   return (
     <div className="body">
       <Router>
@@ -20,8 +21,8 @@ function App() {
           <Route exact path="/about">
             <About />
           </Route>
-          <Route exact path="/login">
-            <Login />
+          <Route exact path="/account">
+            <Account login={loginState} setLogin={setLoginState} />
           </Route>
           <Route path="*">
             <Error />
