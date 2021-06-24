@@ -2,9 +2,9 @@ import React from "react";
 import "./header.css";
 import Logo from "./../images/logo.svg";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
   accountIcon: {
@@ -17,6 +17,11 @@ const useStyles = makeStyles({
       color: "#a3c4bc",
     },
   },
+  accountActiveIcon: {
+    "& .MuiSvgIcon-root": {
+      color: "#a3c4bc",
+    },
+  },
 });
 function Header() {
   return (
@@ -25,19 +30,33 @@ function Header() {
       <nav className="navbar">
         <ul>
           <li>
-            <Link to="/" className="header-nav-link">
+            <NavLink
+              exact
+              to="/"
+              className="header-nav-link"
+              activeClassName="header-active-nav-link"
+            >
               Home
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/about" className="header-nav-link">
+            <NavLink
+              exact
+              to="/about"
+              className="header-nav-link"
+              activeClassName="header-active-nav-link"
+            >
               About
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/login">
+            <NavLink
+              exact
+              to="/account"
+              activeClassName={useStyles().accountActiveIcon}
+            >
               <AccountCircleOutlinedIcon className={useStyles().accountIcon} />
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>

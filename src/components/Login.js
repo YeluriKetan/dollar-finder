@@ -4,14 +4,14 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core";
 
-function Login() {
-  const [loginValue, setLoginValue] = useState(0);
+function Login({ setLogin }) {
+  const [formSelect, setFormSelect] = useState(0);
   console.log("oye");
   let form = () => {
-    if (loginValue) {
+    if (formSelect) {
       return <RegisterForm />;
     } else {
-      return <LoginForm />;
+      return <LoginForm setLogin={setLogin} />;
     }
   };
   return (
@@ -24,8 +24,8 @@ function Login() {
             height: "fit-content",
             width: "fit-content",
           }}
-          loginValue={loginValue}
-          changeLoginValue={setLoginValue}
+          formSelect={formSelect}
+          changeFormValue={setFormSelect}
         />
         <div className="forms-container">{form()}</div>
       </div>
@@ -47,14 +47,14 @@ const useStyles = makeStyles({
     fontSize: 30,
   },
 });
-function Selector({ loginValue, changeLoginValue }) {
+function Selector({ formSelect, changeFormValue }) {
   return (
     <>
       <ThemeProvider theme={theme}>
         <Tabs
-          value={loginValue}
+          value={formSelect}
           indicatorColor="primary"
-          onChange={(event, newValue) => changeLoginValue(newValue)}
+          onChange={(event, newValue) => changeFormValue(newValue)}
         >
           <Tab label="Login" className={useStyles().tab} />
           <Tab label="Register" className={useStyles().tab} />
@@ -63,12 +63,16 @@ function Selector({ loginValue, changeLoginValue }) {
     </>
   );
 }
-function LoginForm() {
+function LoginForm({ setLogin }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLogin(true);
+  };
   return (
     <form
       id="login-form-id"
       className="form login-form"
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={handleSubmit}
     >
       <input
         type="text"
