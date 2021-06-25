@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./login.css";
+import userService from './services/userservice'
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core";
+
 
 function Login({ setLogin }) {
   const [formSelect, setFormSelect] = useState(0);
@@ -105,35 +107,56 @@ function LoginForm({ setLogin }) {
     </form>
   );
 }
+
+
 function RegisterForm() {
+  const[username, setUsername] = useState('')
+  const[email, setEmail] = useState('')
+  const[password, setPassword] = useState('')
+  const handleSubmission = (event) => {
+    event.preventDefault()
+    const newUser = {
+      username: username,
+      email : email,
+      password: password
+    }
+    userService.create(newUser).then(
+      response => {console.log(response)})
+  }
   return (
     <form
       id="register-form-id"
       className="form register-form"
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={handleSubmission}
     >
       <input
         type="text"
+        value={email}
         name="regemail"
         placeholder="Email"
         className="form-text-field email-field"
         autoComplete="off"
+        onChange={(e) => setEmail(e.target.value)}
       />
       <br />
       <input
         type="password"
+        value={username}
         name="regpassword"
         placeholder="Username"
         className="form-text-field password-field"
         autoComplete="off"
+        onChange={(e) => setUsername(e.target.value)}
       />
       <br />
       <input
         type="text"
+        value={password}
         name="regusername"
         placeholder="Password"
         className="form-text-field username-field"
         autoComplete="off"
+        onChange={(e) => setPassword(e.target.value)}
       />
       <br />
       <button type="submit" className="form-submit">
