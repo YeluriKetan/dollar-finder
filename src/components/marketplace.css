@@ -1,0 +1,50 @@
+.marketplace-background {
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.marketplace-sortby-form {
+  width: fit-content;
+  height: fit-content;
+  margin: 40px 0;
+  padding: 0;
+}
+.marketplace-sortby-form > label {
+  font-family: "Overpass Mono", monospace;
+  font-size: 20px;
+}
+.marketplace-sortby-form > select {
+  font-family: "Overpass Mono", monospace;
+  font-size: 20px;
+  height: 40px;
+  width: 300px;
+  border-width: 0;
+  border-radius: 20px;
+  padding: 0 10px;
+}
+.marketplace-sortby-form > select:focus {
+  outline: none;
+}
+.marketplace-sortby-form > select:hover {
+  cursor: pointer;
+}
+.marketplace-sortby-form > select > option {
+  font-family: "Overpass Mono", monospace;
+  font-size: 20px;
+}
+.posts-background {
+  width: 85vw;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: transparent;
+  margin: 0 0 100px 0;
+  padding: 10px;
+  border-radius: 10px;
+  border: solid #413c58;
+  border-width: 2px;
+}

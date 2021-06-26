@@ -2,7 +2,7 @@ import React from "react";
 import "./header.css";
 import Logo from "./../images/logo.svg";
 import AccountCircleOutlinedIcon from "@material-ui/icons/AccountCircleOutlined";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/styles";
 
@@ -26,7 +26,9 @@ const useStyles = makeStyles({
 function Header() {
   return (
     <header className="header">
-      <img src={Logo} alt="Logo" className="icon" />
+      <Link to="/about">
+        <img src={Logo} alt="Logo" className="icon" />
+      </Link>
       <nav className="navbar">
         <ul>
           <li>

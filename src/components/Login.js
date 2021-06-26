@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import "./login.css";
-import userService from './services/userservice'
+import userService from "./services/userservice";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core";
-
 
 function Login({ setLogin }) {
   const [formSelect, setFormSelect] = useState(0);
@@ -108,21 +107,21 @@ function LoginForm({ setLogin }) {
   );
 }
 
-
 function RegisterForm() {
-  const[username, setUsername] = useState('')
-  const[email, setEmail] = useState('')
-  const[password, setPassword] = useState('')
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const handleSubmission = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const newUser = {
       username: username,
-      email : email,
-      password: password
-    }
-    userService.create(newUser).then(
-      response => {console.log(response)})
-  }
+      email: email,
+      password: password,
+    };
+    userService.create(newUser).then((response) => {
+      console.log(response);
+    });
+  };
   return (
     <form
       id="register-form-id"
@@ -140,7 +139,7 @@ function RegisterForm() {
       />
       <br />
       <input
-        type="password"
+        type="text"
         value={username}
         name="regpassword"
         placeholder="Username"
@@ -150,7 +149,7 @@ function RegisterForm() {
       />
       <br />
       <input
-        type="text"
+        type="password"
         value={password}
         name="regusername"
         placeholder="Password"
