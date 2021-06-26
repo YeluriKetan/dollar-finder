@@ -4,6 +4,7 @@ import NameLogo from "./../images/namelogo.svg";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import { makeStyles } from "@material-ui/core/styles";
+import Marketplace from "./Marketplace";
 
 const useStyles = makeStyles({
   iconButton: {
@@ -47,7 +48,9 @@ function Home() {
           </IconButton>
         </form>
       </div>
-      <div className="home-main-main"></div>
+      <div className="home-main-main">
+        <Marketplace />
+      </div>
     </main>
   );
 }
