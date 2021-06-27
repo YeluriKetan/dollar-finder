@@ -78,6 +78,42 @@ function About() {
       </section>
       <h2 className="section-heading">Milestone 2</h2>
       <section className="about-section milestone-2">
+        <article className="about-article">
+          <h3 className="article-heading">Project README</h3>
+          <a
+            href="https://docs.google.com/document/d/107ib214TH-uZ9TXZ_i7-ujnqCSkYKPyHTjYtb-ZLOwE/edit"
+            target="_blank"
+            rel="noreferrer"
+            className="about-icon-link"
+          >
+            <DescriptionOutlinedIcon className={useStylesAbout().iconLink} />
+          </a>
+        </article>
+        <article className="about-article">
+          <h3 className="article-heading">Project Log</h3>
+          <a
+            href="https://drive.google.com/file/d/1ksECiulFiFOZS4ZRUFJK-EW4ztolf1gk/view?usp=sharing"
+            target="_blank"
+            rel="noreferrer"
+            className="about-icon-link"
+          >
+            <PictureAsPdfOutlinedIcon className={useStylesAbout().iconLink} />
+          </a>
+        </article>
+        <article className="about-article">
+          <h3 className="article-heading">Project Video</h3>
+          <a
+            href="https://drive.google.com/file/d/1j6tmzAIlCIHKGod7U27tmAB_k1SKF66U/view?usp=sharing"
+            target="_blank"
+            rel="noreferrer"
+            className="about-icon-link"
+          >
+            <OndemandVideoOutlinedIcon className={useStylesAbout().iconLink} />
+          </a>
+        </article>
+      </section>
+      <h2 className="section-heading">Milestone 3</h2>
+      <section className="about-section milestone-3">
         <h3 className="article-heading">Coming Soon...</h3>
       </section>
     </main>
