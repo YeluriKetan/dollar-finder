@@ -3,7 +3,7 @@ CSS for Postmini.js
 */
 
 .marketplace-post {
-  height: 200px;
+  height: 250px;
   width: 300px;
   background-color: #a3c4bc;
   margin: 10px;
@@ -13,8 +13,6 @@ CSS for Postmini.js
 .postmini-img {
   width: 300px;
   height: 150px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   object-fit: contain;
   background-color: white;
 }
@@ -31,12 +29,14 @@ CSS for Postmini.js
   color: #413c58;
 }
 
-.postmini-title {
+.postmini-title,
+.postmini-location {
   width: 210px;
   margin: 0;
 }
 
-.postmini-price {
+.postmini-price,
+.postmini-date {
   width: 70px;
   margin: 0;
 }
@@ -54,6 +54,23 @@ CSS for Product.js
   align-items: center;
 }
 
+.product-back-link {
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+  border-width: 0;
+  margin: 50px 0;
+  padding: 0;
+  background-color: #413c58;
+  color: white;
+  font-family: "Teko", monospace;
+  font-size: 25px;
+  cursor: pointer;
+}
+.product-back-link:hover {
+  background-color: #665e8a;
+  transform: scale(1.1);
+}
 .product-background {
   width: fit-content;
   height: 600px;
@@ -62,7 +79,8 @@ CSS for Product.js
   flex-direction: row;
   border-radius: 30px;
   justify-content: space-between;
-  margin: 100px 0;
+  margin: 0;
+  margin-bottom: 100px;
 }
 
 .product-img {
@@ -83,15 +101,30 @@ CSS for Product.js
   width: 600px;
   height: 600px;
 }
-.product-title {
-  width: fit-content;
-  margin: 0;
-  padding: 0;
-}
+
 .product-price {
   width: fit-content;
   margin: 0;
   padding: 0;
+}
+.product-title {
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+  font-size: 25px;
+  font-weight: bolder;
+}
+.product-location {
+  width: 500px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.product-date {
+  margin: 0;
+  padding: 0;
+  width: fit-content;
+  font-size: 15px;
 }
 .product-description {
   width: 500px;

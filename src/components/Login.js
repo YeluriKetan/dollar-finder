@@ -95,8 +95,7 @@ function LoginForm({ setLogin }) {
         Login
       </button>
       <a
-        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-        target="_blank"
+        href="https://www.youtube.com"
         id="forgot-password-id"
         className="forgot-password"
         rel="noreferrer"
