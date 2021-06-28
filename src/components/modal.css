@@ -1,0 +1,37 @@
+.login-modal {
+  width: fit-content;
+  height: fit-content;
+  background-color: white;
+  position: absolute;
+  bottom: 0px;
+  padding: 10px;
+  border-radius: 15px;
+}
+.login-modal > p {
+  width: fit-content;
+  height: fit-content;
+  font-family: "Overpass Mono", monospace;
+  font-size: 20px;
+  color: red;
+  margin: 0;
+  text-align: center;
+  word-wrap: normal;
+}
+.create-modal {
+  width: fit-content;
+  height: fit-content;
+  background-color: white;
+  position: relative;
+  padding: 10px;
+  border-radius: 15px;
+}
+.create-modal > p {
+  width: fit-content;
+  height: fit-content;
+  font-family: "Overpass Mono", monospace;
+  font-size: 20px;
+  color: red;
+  margin: 0;
+  text-align: center;
+  word-wrap: normal;
+}

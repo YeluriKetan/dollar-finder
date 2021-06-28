@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import "./login.css";
-import userService from "./services/userservice";
+import axios from "axios";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core";
-
+import Modal from "./Modal";
 function Login({ setLogin }) {
   const [formSelect, setFormSelect] = useState(0);
-  console.log("oye");
   let form = () => {
     if (formSelect) {
       return <RegisterForm />;
@@ -65,9 +64,40 @@ function Selector({ formSelect, changeFormValue }) {
   );
 }
 function LoginForm({ setLogin }) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  const closeModal = () => {
+    setShowModal(false);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLogin(true);
+    if (username && password) {
+      const oldUser = {
+        username: username,
+        password: password,
+      };
+      axios.post("http://dollarfinder.herokuapp.com/login", oldUser).then(
+        (response) => {
+          console.log(response);
+          var data = response.data;
+          const storeLogin = {
+            ...data,
+            loginState: true,
+          };
+          localStorage.setItem("dollarfinderlogin", JSON.stringify(storeLogin));
+          setLogin(true);
+        },
+        (error) => {
+          setModalContent("Incorrect username or password");
+          setShowModal(true);
+        }
+      );
+    } else {
+      setModalContent("Please fill in all the fields");
+      setShowModal(true);
+    }
   };
   return (
     <form
@@ -81,6 +111,8 @@ function LoginForm({ setLogin }) {
         placeholder="Username"
         className="form-text-field email-field"
         autoComplete="off"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
       />
       <br />
       <input
@@ -89,6 +121,8 @@ function LoginForm({ setLogin }) {
         placeholder="Password"
         className="form-text-field password-field"
         autoComplete="off"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
       />
       <br />
       <button type="submit" className="form-submit">
@@ -102,6 +136,13 @@ function LoginForm({ setLogin }) {
       >
         Forgot password?
       </a>
+      {showModal && (
+        <Modal
+          closeModal={closeModal}
+          modalContent={modalContent}
+          classname={"login-modal"}
+        />
+      )}
     </form>
   );
 }
@@ -110,16 +151,35 @@ function RegisterForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  const closeModal = () => {
+    setShowModal(false);
+  };
   const handleSubmission = (event) => {
     event.preventDefault();
-    const newUser = {
-      username: username,
-      email: email,
-      password: password,
-    };
-    userService.create(newUser).then((response) => {
-      console.log(response);
-    });
+    if (username && email && password) {
+      const newUser = {
+        username: username,
+        email: email,
+        password: password,
+      };
+      axios.post("http://dollarfinder.herokuapp.com/api/users", newUser).then(
+        (response) => {
+          console.log(response);
+          setModalContent("Registration successful. Proceed to login");
+          setShowModal(true);
+        },
+        (error) => {
+          console.log(error);
+          setModalContent("Registration failed. Try again!");
+          setShowModal(true);
+        }
+      );
+    } else {
+      setModalContent("Please fill in all the fields");
+      setShowModal(true);
+    }
   };
   return (
     <form
@@ -160,6 +220,13 @@ function RegisterForm() {
       <button type="submit" className="form-submit">
         Register
       </button>
+      {showModal && (
+        <Modal
+          closeModal={closeModal}
+          modalContent={modalContent}
+          classname={"login-modal"}
+        />
+      )}
     </form>
   );
 }
