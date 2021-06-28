@@ -8,9 +8,19 @@ import Account from "./components/Account";
 import Product from "./components/Product";
 import "./app.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import Login from "./components/Login";
 
 function App() {
-  const [loginState, setLoginState] = React.useState(false);
+  const initialLoginState = () => {
+    if (!localStorage.hasOwnProperty("dollarfinderlogin")) {
+      return false;
+    } else {
+      return JSON.parse(localStorage.getItem("dollarfinderlogin")).loginState;
+    }
+  };
+  const [loginState, setLoginState] = React.useState(initialLoginState());
+
   return (
     <div className="body">
       <Router>
@@ -23,7 +33,18 @@ function App() {
             <About />
           </Route>
           <Route exact path="/account">
-            <Account login={loginState} setLogin={setLoginState} />
+            {loginState ? (
+              <Account setLogin={setLoginState} />
+            ) : (
+              <Redirect to="/login" />
+            )}
+          </Route>
+          <Route exact path="/login">
+            {loginState ? (
+              <Redirect to="/account" />
+            ) : (
+              <Login setLogin={setLoginState} />
+            )}
           </Route>
           <Route exact path="/product/:id" children={<Product />}></Route>
           <Route path="*">

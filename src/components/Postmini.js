@@ -14,7 +14,7 @@ function Postmini(post) {
         <img src={img} alt={title} className="postmini-img" />
         <div className="postmini-info">
           <h4 className="postmini-title">{location.slice(0, 30)}</h4>
-          <h4 className="postmini-price">{date}</h4>
+          <h4 className="postmini-price">{date.slice(0, 6)}</h4>
         </div>
       </div>
     </Link>

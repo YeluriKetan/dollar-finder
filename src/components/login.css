@@ -97,6 +97,9 @@
   background-color: #665e8a;
   transform: scale(1.1);
 }
+.form-submit:focus {
+  outline: none;
+}
 .forgot-password {
   font-family: "Teko", monospace;
   text-decoration: none;

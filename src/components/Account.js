@@ -1,24 +1,59 @@
 import React from "react";
 import "./account.css";
 import ProfilePic from "./../images/sampleprofilepic.jpg";
-import Login from "./Login";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core";
+import Createapost from "./Createapost";
 
-function Account({ login, setLogin }) {
-  return login ? (
-    <DashBoard setLogin={setLogin} />
-  ) : (
-    <Login setLogin={setLogin} />
-  );
-}
-function DashBoard({ setLogin }) {
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#000",
+    },
+  },
+});
+const useStyles = makeStyles({
+  tab: {
+    textTransform: "none",
+    fontFamily: "Teko",
+    fontSize: 30,
+  },
+});
+
+function Account({ setLogin }) {
+  const [dashboardValue, setDashboardValue] = React.useState(0);
+  const dashboard = () => {
+    if (dashboardValue) {
+      return <Createapost />;
+    } else {
+      return <Profile />;
+    }
+  };
   const handleLogout = (e) => {
     e.preventDefault();
     setLogin(false);
+    const newLoginStorage = {
+      loginState: false,
+      username: "",
+      logintoken: "",
+    };
+    localStorage.setItem("dollarfinderlogin", JSON.stringify(newLoginStorage));
   };
   return (
     <main className="account-main">
       <div className="dashboard">
-        <Profile />
+        <Selector
+          style={{
+            margin: 0,
+            padding: 0,
+            height: "fit-content",
+            width: "fit-content",
+          }}
+          dashboardValue={dashboardValue}
+          changeDashboardValue={setDashboardValue}
+        />
+        <div className="dashboard-container">{dashboard()}</div>
       </div>
       <button type="button" className="logout-button" onClick={handleLogout}>
         Logout
@@ -26,10 +61,28 @@ function DashBoard({ setLogin }) {
     </main>
   );
 }
+
+function Selector({ dashboardValue, changeDashboardValue }) {
+  return (
+    <>
+      <ThemeProvider theme={theme}>
+        <Tabs
+          value={dashboardValue}
+          indicatorColor="primary"
+          onChange={(event, newValue) => changeDashboardValue(newValue)}
+        >
+          <Tab label="Account" className={useStyles().tab} />
+          <Tab label="Create a Post" className={useStyles().tab} />
+        </Tabs>
+      </ThemeProvider>
+    </>
+  );
+}
 function Profile() {
-  const username = "Sample Name";
-  const email = "sample-email@gmail.com";
-  const date = "27-06-2020";
+  const { username, email } = JSON.parse(
+    localStorage.getItem("dollarfinderlogin")
+  );
+  const date = "Coming soon...";
   return (
     <div className="profile">
       <h3 className="profile-heading">Your Account</h3>
