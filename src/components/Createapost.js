@@ -18,17 +18,21 @@ function Createapost() {
     setShowModal(false);
   };
   const handleSubmit = (e) => {
+    console.log(preview);
     e.preventDefault();
     if (
       createpost.title &&
       createpost.price &&
       createpost.location &&
-      createpost.description &&
-      createpost.img
+      createpost.description
     ) {
       const newPost = {
-        ...createpost,
-        img: preview,
+        data: [
+          {
+            ...createpost,
+            img: preview,
+          },
+        ],
         logintoken: JSON.parse(localStorage.getItem("dollarfinderlogin"))
           .logintoken,
       };
@@ -85,6 +89,7 @@ function Createapost() {
           classname={"create-modal"}
         />
       )}
+      <h3 className="create-heading">New Post</h3>
       <form id="create-form-id" className="create-form" onSubmit={handleSubmit}>
         <div className="create-input-div">
           <label htmlFor="create-title" className="create-label">

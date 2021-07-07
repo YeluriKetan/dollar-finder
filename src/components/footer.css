@@ -6,7 +6,7 @@
 
 .footer {
   width: 100vw;
-  height: 200px;
+  height: 12.5rem;
   background-color: #413c58;
   padding: 0;
   margin: 0;
@@ -21,9 +21,9 @@
 .footer-heading {
   color: #a3c4bc;
   padding: 0;
-  margin: 10px 0;
+  margin: 0.625rem 0;
   font-family: "Montserrat", sans-serif;
-  font-size: x-large;
+  font-size: 1.5rem;
   font-weight: 1000;
 }
 .footer-column {
@@ -31,6 +31,7 @@
   height: fit-content;
   padding: 0;
   margin: 0;
+  padding-left: 0.5rem;
 }
 .footer-list {
   padding: 0;
@@ -44,7 +45,7 @@
   text-decoration: none;
   color: white;
   font-family: "Overpass Mono", monospace;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .footer-list > li > a:hover {
@@ -56,15 +57,27 @@
   color: white;
   word-wrap: normal;
   font-family: "Overpass Mono", monospace;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .copyright {
   font-family: "JetBrains Mono", sans-serif;
-  font-size: smaller;
+  font-size: 0.75rem;
   color: white;
   padding: 0;
   margin: 0;
   text-align: center;
   display: block;
+}
+
+@media (max-width: 600px) {
+  .footer-heading {
+    font-size: 1rem;
+  }
+  .footer-list > li > a {
+    font-size: 0.75rem;
+  }
+  .footer-para {
+    font-size: 0.75rem;
+  }
 }

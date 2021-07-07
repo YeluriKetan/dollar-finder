@@ -6,50 +6,66 @@
 .header {
   background-color: #413c58;
   width: 100vw;
-  height: 100px;
+  height: 6.25rem;
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: space-between;
 }
 .icon {
-  width: 70px;
-  height: 70px;
-  margin: 15px;
+  width: 4.4rem;
+  margin: 1rem;
 }
 
 .navbar {
   padding: 0;
-  width: fit-content;
-  height: fit-content;
+  width: 20rem;
+  height: inherit;
   margin: 0;
+  margin-right: 1rem;
 }
 .navbar > ul {
   list-style: none;
-  width: fit-content;
-  height: fit-content;
+  width: inherit;
+  height: inherit;
   padding: 0;
   margin: 0;
   display: flex;
+  justify-content: space-evenly;
   flex-shrink: 1.5;
   align-items: center;
 }
 .navbar > ul > li {
   width: fit-content;
-  height: fit-content;
+  height: inherit;
   margin: 0;
   padding: 0;
+  display: flex;
+  align-items: center;
 }
 .header-nav-link {
   font-family: "Teko", sans-serif;
-  font-size: 30px;
+  font-size: 2rem;
   text-decoration: none;
   color: white;
-  margin: 25px;
 }
 .header-nav-link:hover {
   color: #a3c4bc;
 }
 .header-active-nav-link {
   color: #a3c4bc;
+}
+
+@media (max-width: 600px) {
+  .header {
+    height: 5rem;
+  }
+  .icon {
+    width: 3rem;
+    margin: 1rem;
+  }
+  .navbar {
+    margin-right: 0;
+    width: 15rem;
+  }
 }

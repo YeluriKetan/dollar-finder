@@ -8,15 +8,15 @@ import Marketplace from "./Marketplace";
 
 const useStyles = makeStyles({
   iconButton: {
-    width: 60,
-    height: 60,
+    width: "3.75rem",
+    height: "3.75rem",
     margin: 0,
-    marginRight: 10,
+    marginRight: "0.625rem",
     padding: 0,
   },
   searchIcon: {
-    width: 40,
-    height: 40,
+    width: "2.5rem",
+    height: "2.5rem",
     margin: 0,
     padding: 0,
   },

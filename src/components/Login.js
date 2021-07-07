@@ -73,12 +73,13 @@ function LoginForm({ setLogin }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLogin(true);
     if (username && password) {
       const oldUser = {
         username: username,
         password: password,
       };
-      axios.post("http://dollarfinder.herokuapp.com/login", oldUser).then(
+      axios.post("https://dollarfinder.herokuapp.com/login", oldUser).then(
         (response) => {
           console.log(response);
           var data = response.data;
@@ -114,7 +115,6 @@ function LoginForm({ setLogin }) {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
-      <br />
       <input
         type="password"
         name="loginpassword"
@@ -124,7 +124,6 @@ function LoginForm({ setLogin }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <br />
       <button type="submit" className="form-submit">
         Login
       </button>
@@ -133,6 +132,7 @@ function LoginForm({ setLogin }) {
         id="forgot-password-id"
         className="forgot-password"
         rel="noreferrer"
+        target="_blank"
       >
         Forgot password?
       </a>
@@ -164,7 +164,7 @@ function RegisterForm() {
         email: email,
         password: password,
       };
-      axios.post("http://dollarfinder.herokuapp.com/api/users", newUser).then(
+      axios.post("https://dollarfinder.herokuapp.com/api/users", newUser).then(
         (response) => {
           console.log(response);
           setModalContent("Registration successful. Proceed to login");
@@ -196,7 +196,6 @@ function RegisterForm() {
         autoComplete="off"
         onChange={(e) => setEmail(e.target.value)}
       />
-      <br />
       <input
         type="text"
         value={username}
@@ -206,7 +205,6 @@ function RegisterForm() {
         autoComplete="off"
         onChange={(e) => setUsername(e.target.value)}
       />
-      <br />
       <input
         type="password"
         value={password}
@@ -216,7 +214,6 @@ function RegisterForm() {
         autoComplete="off"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <br />
       <button type="submit" className="form-submit">
         Register
       </button>

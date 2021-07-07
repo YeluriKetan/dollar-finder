@@ -11,7 +11,7 @@
 
 .search-bar-background {
   width: 100vw;
-  height: 300px;
+  height: 18.75rem;
   background-color: #a3c4bc;
   display: flex;
   flex-direction: column;
@@ -20,30 +20,30 @@
 }
 
 .logo-text {
-  height: 100px;
+  height: 6.25rem;
   padding: 0;
   margin: 0;
 }
 .search-form {
-  width: 500px;
+  width: 31.25rem;
   height: fit-content;
   margin: 0;
   padding: 0;
-  border-radius: 35px;
+  border-radius: 2.2rem;
   background-color: white;
   display: flex;
   align-items: center;
 }
 .search-bar {
-  border-radius: 35px;
-  width: 360px;
-  height: 70px;
+  border-radius: 2.2rem;
+  width: 22.5rem;
+  height: 4.4rem;
   padding: 0;
-  margin: 0 0 0 70px;
+  margin: 0 0 0 4.4rem;
 
   border-width: 0;
   font-family: "Overpass Mono", monospace;
-  font-size: 32px;
+  font-size: 2rem;
   text-align: center;
 }
 .search-bar:focus {
@@ -66,19 +66,6 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
-.search-icon-button {
-  width: 60;
-  height: 60;
-  margin: 0;
-
-  padding: 0;
-}
-.search-icon {
-  width: 40;
-  height: 40;
-  margin: 0;
-  padding: 0;
-}
 .home-main-main {
   width: 100vw;
   height: fit-content;
@@ -87,4 +74,16 @@ input[type="search"]::-webkit-search-results-decoration {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 600px) {
+  .search-bar-background {
+    height: 12rem;
+  }
+  .logo-text {
+    height: 4rem;
+  }
+  .search-form {
+    transform: scale(0.6);
+  }
 }
