@@ -33,9 +33,9 @@ function About() {
             height="315"
             src="https://www.youtube.com/embed/Z7pfjg0NKnU"
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
+            allowFullScreen
             className="proposal-video"
           ></iframe>
         </article>
@@ -81,7 +81,7 @@ function About() {
         <article className="about-article">
           <h3 className="article-heading">Project README</h3>
           <a
-            href="https://docs.google.com/document/d/107ib214TH-uZ9TXZ_i7-ujnqCSkYKPyHTjYtb-ZLOwE/edit"
+            href="https://docs.google.com/document/d/1sopNupdRmtpP565OMMtxEXou868BZIe0KRtIh6Bo1rE/edit"
             target="_blank"
             rel="noreferrer"
             className="about-icon-link"
@@ -92,7 +92,7 @@ function About() {
         <article className="about-article">
           <h3 className="article-heading">Project Log</h3>
           <a
-            href="https://drive.google.com/file/d/1ksECiulFiFOZS4ZRUFJK-EW4ztolf1gk/view?usp=sharing"
+            href="https://docs.google.com/document/d/1oBLwwLK7aOVL98dRd1prHLtYYkVnNeel-qIi7FawFzk/edit"
             target="_blank"
             rel="noreferrer"
             className="about-icon-link"
@@ -103,7 +103,7 @@ function About() {
         <article className="about-article">
           <h3 className="article-heading">Project Video</h3>
           <a
-            href="https://drive.google.com/file/d/1j6tmzAIlCIHKGod7U27tmAB_k1SKF66U/view?usp=sharing"
+            href="https://drive.google.com/file/d/1bpmwSVqD94PSSGDg9Qx8-XI1yI5ZIhQR/view?usp=sharing"
             target="_blank"
             rel="noreferrer"
             className="about-icon-link"

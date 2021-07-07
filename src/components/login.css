@@ -4,35 +4,35 @@
   background-color: #a3c4bc;
   display: flex;
   justify-content: center;
-  padding: 10px 0;
+  padding: 0.625rem 0;
 }
 .login-register-container {
-  width: 400px;
-  height: 500px;
-  margin: 100px 0;
+  width: 25rem;
+  height: 30rem;
+  margin: 6.25rem 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   background-color: #e7efc5;
-  border-radius: 50px;
+  border-radius: 3rem;
   overflow-x: hidden;
 }
 .forms-container {
-  width: 1000px;
-  height: 300px;
+  width: 50rem;
+  height: 20rem;
   display: flex;
   justify-content: center;
 }
 .form {
-  width: 400px;
-  height: 300px;
+  width: 25rem;
+  height: 20rem;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   transition: 1s;
 }
@@ -43,7 +43,7 @@
 }
 @keyframes login-animation {
   from {
-    right: 400px;
+    right: 25rem;
   }
   to {
     right: 0;
@@ -56,7 +56,7 @@
 }
 @keyframes register-animation {
   from {
-    left: 400px;
+    left: 25rem;
   }
   to {
     left: 0;
@@ -66,31 +66,30 @@
   font-family: "Overpass Mono", monospace;
   text-align: center;
   padding: 0;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: normal;
-  width: 300px;
-  height: 40px;
-  border-radius: 25px;
+  width: 18rem;
+  height: 2.5rem;
+  border-radius: 2rem;
   margin: 0;
   background: transparent;
   color: black;
   border-color: black;
-  border-width: 3 px;
 }
 .form-text-field:focus {
   outline: none;
 }
 .form-submit {
-  width: 150px;
-  height: 50px;
-  border-radius: 25px;
+  width: 10rem;
+  height: 3rem;
+  border-radius: 1.5rem;
   border-width: 0;
   margin: 0;
   padding: 0;
   background-color: #413c58;
   color: white;
   font-family: "Teko", monospace;
-  font-size: 25px;
+  font-size: 1.5rem;
   cursor: pointer;
 }
 .form-submit:hover {
@@ -104,8 +103,60 @@
   font-family: "Teko", monospace;
   text-decoration: none;
   color: #413c58;
-  font-size: 25px;
+  font-size: 1.5rem;
 }
 .forgot-password:hover {
   color: #665e8a;
+}
+
+@media (max-width: 600px) {
+  .login-register-container {
+    width: 18rem;
+    height: 25rem;
+    margin: 4rem 0;
+    border-radius: 2.5rem;
+    justify-content: space-evenly;
+  }
+  .forms-container {
+    width: 36rem;
+    height: 15rem;
+  }
+  .form {
+    width: 18rem;
+    height: 15rem;
+  }
+  @keyframes login-animation {
+    from {
+      right: 18rem;
+    }
+    to {
+      right: 0;
+    }
+  }
+  @keyframes register-animation {
+    from {
+      left: 18rem;
+    }
+    to {
+      left: 0;
+    }
+  }
+  .form-text-field {
+    font-size: 1rem;
+    width: 12rem;
+    height: 2rem;
+    border-radius: 2rem;
+  }
+  .form-submit {
+    width: 6rem;
+    height: 2rem;
+    border-radius: 1.5rem;
+    font-size: 1rem;
+  }
+  .form-submit:hover {
+    transform: scale(1.1);
+  }
+  .forgot-password {
+    font-size: 1rem;
+  }
 }

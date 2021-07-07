@@ -8,10 +8,8 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
   accountIcon: {
-    width: 50,
-    height: 50,
-    margin: 25,
-    marginRight: 45,
+    width: "3rem",
+    height: "3rem",
     color: "white",
     "&:hover": {
       color: "#a3c4bc",

@@ -1,20 +1,36 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { data } from "./data";
 import "./post.css";
+import { useFetch } from "./useFetch";
 
 function Product() {
   const { id } = useParams();
-  const { img, title, price, location, date } = data.find(
-    (product) => product.id === parseInt(id)
-  );
+  const getPostUrl = "https://dollarfinder.herokuapp.com/posts";
+  const { data, loading } = useFetch(getPostUrl, "product");
   return (
     <main className="product-main">
+      {loading ? (
+        <p>Loading</p>
+      ) : (
+        <ProductData data={data.find((product) => product.id === id)} />
+      )}
+    </main>
+  );
+}
+
+const ProductData = ({ data }) => {
+  const { img, title, price, location, posting_date } = data;
+  return (
+    <>
       <Link to="/">
         <button className="product-back-link">Go Back</button>
       </Link>
       <div className="product-background">
-        <img src={img} alt={title} className="product-img" />
+        <img
+          src={"data:image/jpeg;base64," + img}
+          alt={title}
+          className="product-img"
+        />
         <div className="product-info">
           <p className="product-title">{title}</p>
           <p className="product-price">
@@ -29,11 +45,11 @@ function Product() {
             aspernatur optio vero nemo adipisci sunt amet ipsam nam nostrum
             officia!
           </p>
-          <p className="product-date">Date of Post: {date} 2021</p>
+          <p className="product-date">Date of Post: {posting_date} 2021</p>
         </div>
       </div>
-    </main>
+    </>
   );
-}
+};
 
 export default Product;
