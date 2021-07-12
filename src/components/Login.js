@@ -73,7 +73,6 @@ function LoginForm({ setLogin }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLogin(true);
     if (username && password) {
       const oldUser = {
         username: username,
@@ -81,7 +80,6 @@ function LoginForm({ setLogin }) {
       };
       axios.post("https://dollarfinder.herokuapp.com/login", oldUser).then(
         (response) => {
-          console.log(response);
           var data = response.data;
           const storeLogin = {
             ...data,
@@ -164,9 +162,8 @@ function RegisterForm() {
         email: email,
         password: password,
       };
-      axios.post("https://dollarfinder.herokuapp.com/api/users", newUser).then(
+      axios.post("https://dollarfinder.herokuapp.com/register", newUser).then(
         (response) => {
-          console.log(response);
           setModalContent("Registration successful. Proceed to login");
           setShowModal(true);
         },
