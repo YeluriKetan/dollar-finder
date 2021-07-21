@@ -1,37 +1,36 @@
-.login-modal {
+.general-modal {
   width: fit-content;
   height: fit-content;
-  background-color: white;
+  background-color: black;
   position: absolute;
-  bottom: 50%;
-  padding: 10px;
-  border-radius: 15px;
+  bottom: 45%;
+  padding: 0.625rem;
+  border-radius: 1rem;
+  z-index: 3;
+  box-shadow: 2px 2px 4px 2px rgb(0, 0, 0, 0.87);
 }
-.login-modal > p {
+
+.general-modal > p {
   width: fit-content;
   height: fit-content;
   font-family: "Overpass Mono", monospace;
-  font-size: 20px;
-  color: red;
+  font-size: 1.25rem;
+  color: white;
   margin: 0;
   text-align: center;
   word-wrap: normal;
 }
-.create-modal {
-  width: fit-content;
-  height: fit-content;
-  background-color: white;
-  position: relative;
-  padding: 10px;
-  border-radius: 15px;
+.forgot-password-modal > p {
+  font-size: 1rem;
 }
-.create-modal > p {
-  width: fit-content;
-  height: fit-content;
-  font-family: "Overpass Mono", monospace;
-  font-size: 20px;
-  color: red;
-  margin: 0;
-  text-align: center;
-  word-wrap: normal;
+.changepw-modal {
+  width: 16rem;
+}
+@media (max-width: 600px) {
+  .general-modal > p {
+    font-size: 0.8rem;
+  }
+  .changepw-modal {
+    width: 10rem;
+  }
 }

@@ -33,6 +33,7 @@
   background-color: white;
   display: flex;
   align-items: center;
+  box-shadow: 2px 2px 4px 2px #5c706c;
 }
 .search-bar {
   border-radius: 2.2rem;

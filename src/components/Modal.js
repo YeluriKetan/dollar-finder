@@ -8,7 +8,7 @@ function Modal({ closeModal, modalContent, classname }) {
     }, 2000);
   });
   return (
-    <div className={classname}>
+    <div className={"general-modal " + classname}>
       <p>{modalContent}</p>
     </div>
   );

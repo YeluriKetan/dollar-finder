@@ -9,6 +9,7 @@ function Createapost() {
     title: "",
     price: "",
     location: "",
+    locationUrl: "",
     description: "",
     img: "",
   });
@@ -18,7 +19,6 @@ function Createapost() {
     setShowModal(false);
   };
   const handleSubmit = (e) => {
-    console.log(preview);
     e.preventDefault();
     if (
       createpost.title &&
@@ -33,22 +33,26 @@ function Createapost() {
             img: preview,
           },
         ],
-        logintoken: JSON.parse(localStorage.getItem("dollarfinderlogin"))
-          .logintoken,
       };
-      console.log(newPost);
-      axios.post("http://dollarfinder.herokuapp.com/posts", newPost).then(
-        (response) => {
-          console.log(response);
-          setModalContent("Posted Successfully...");
-          setShowModal(true);
-          handleCancel();
-        },
-        (error) => {
-          setModalContent("Server Error. Please try again...");
-          setShowModal(true);
-        }
-      );
+      const createpostUrl = "http://dollarfinder.herokuapp.com/posts";
+      const loginToken = JSON.parse(
+        localStorage.getItem("dollarfinderlogin")
+      ).logintoken;
+      axios
+        .post(createpostUrl, newPost, {
+          headers: { logintoken: loginToken },
+        })
+        .then(
+          (response) => {
+            setModalContent("Posted Successfully...");
+            setShowModal(true);
+            handleCancel();
+          },
+          (error) => {
+            setModalContent("Server Error. Please try again...");
+            setShowModal(true);
+          }
+        );
     } else {
       setModalContent("Please fill in all the fields");
       setShowModal(true);
@@ -63,6 +67,8 @@ function Createapost() {
       img: "",
     });
     setPreview();
+    const input = document.getElementById("create-location");
+    input.value = "";
   };
   function previewFile() {
     const file = document.querySelector("input[type=file]").files[0];
@@ -79,6 +85,27 @@ function Createapost() {
     if (file) {
       reader.readAsDataURL(file);
     }
+  }
+  let autocomplete;
+  let place;
+  function initAutocomplete() {
+    const input = document.getElementById("create-location");
+    autocomplete = new window.google.maps.places.Autocomplete(input, {
+      componentRestrictions: { country: "sg" },
+      fields: ["url", "name", "formatted_address"],
+      types: ["establishment"],
+    });
+    autocomplete.addListener("place_changed", saveLocation);
+  }
+  function saveLocation() {
+    place = autocomplete.getPlace();
+    const input = document.getElementById("create-location");
+    input.value = place.name + ", " + place.formatted_address;
+    setCreatePost({
+      ...createpost,
+      location: place.name + ", " + place.formatted_address,
+      locationUrl: place.url,
+    });
   }
   return (
     <div className="create">
@@ -132,15 +159,15 @@ function Createapost() {
           </label>
           <input
             id="create-location"
-            type="text"
+            type="search"
             name="create-location"
             placeholder="Location of the store"
             className="create-input"
-            autoComplete="off"
-            value={createpost.location}
-            onChange={(e) =>
-              setCreatePost({ ...createpost, location: e.target.value })
-            }
+            value={createpost.location.name}
+            onChange={(e) => {
+              setCreatePost({ ...createpost, location: e.target.value });
+              initAutocomplete();
+            }}
           />
         </div>
         <div className="create-input-div">
@@ -152,8 +179,8 @@ function Createapost() {
             name="create-description"
             placeholder="Description"
             className="create-input create-input-textarea"
-            cols="50"
-            rows="4"
+            cols="31"
+            rows="5"
             autoComplete="off"
             value={createpost.description}
             onChange={(e) =>
@@ -161,7 +188,7 @@ function Createapost() {
             }
           />
         </div>
-        <div className="create-input-div">
+        <div className="create-input-div create-input-div-img">
           <label htmlFor="create-img" className="create-label">
             Image :
           </label>
@@ -177,19 +204,25 @@ function Createapost() {
               setCreatePost({ ...createpost, img: e.target.value });
             }}
           />
-          <img
-            src={preview}
-            height="100"
-            alt=""
-            className="create-preview-image"
-          />
+          {createpost.img && (
+            <img
+              src={preview}
+              height="100"
+              alt=""
+              className="create-preview-img"
+            />
+          )}
         </div>
 
         <div className="create-buttons">
-          <button type="submit" className="form-submit">
+          <button type="submit" className="createpost-form-submit">
             Post
           </button>
-          <button type="button" className="form-submit" onClick={handleCancel}>
+          <button
+            type="button"
+            className="createpost-form-submit"
+            onClick={handleCancel}
+          >
             Cancel
           </button>
         </div>

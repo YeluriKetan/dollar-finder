@@ -8,7 +8,7 @@ const Postmini = (post) => {
     <Link to={`/product/${id}`} style={{ textDecoration: "none" }}>
       <div className="marketplace-post">
         <div className="postmini-info">
-          <h4 className="postmini-location">{title.slice(0, 40)}</h4>
+          <h4 className="postmini-location">{title.slice(0, 30)}</h4>
           <h4 className="postmini-price">${price}</h4>
         </div>
         <img
