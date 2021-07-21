@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import "./login.css";
-import axios from "axios";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { createMuiTheme, makeStyles, ThemeProvider } from "@material-ui/core";
 import Modal from "./Modal";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import axios from "axios";
+
 function Login({ setLogin }) {
+  const [modal, setModal] = useState({ showModal: false, modalContent: "" });
+  const closeModal = () => {
+    setModal({ ...modal, showModal: false });
+  };
   const [formSelect, setFormSelect] = useState(0);
   let form = () => {
     if (formSelect) {
-      return <RegisterForm />;
+      return <RegisterForm modal={modal} setModal={setModal} />;
     } else {
-      return <LoginForm setLogin={setLogin} />;
+      return <LoginForm setLogin={setLogin} setModal={setModal} />;
     }
   };
   return (
@@ -28,6 +35,13 @@ function Login({ setLogin }) {
           changeFormValue={setFormSelect}
         />
         <div className="forms-container">{form()}</div>
+        {modal.showModal && (
+          <Modal
+            closeModal={closeModal}
+            modalContent={modal.modalContent}
+            classname={"login-modal"}
+          />
+        )}
       </div>
     </main>
   );
@@ -40,11 +54,45 @@ const theme = createMuiTheme({
     },
   },
 });
+
 const useStyles = makeStyles({
   tab: {
     textTransform: "none",
     fontFamily: "Teko",
-    fontSize: 30,
+    fontSize: "2rem",
+  },
+  dialog: {
+    width: "30rem",
+    height: "18rem",
+    borderRadius: "1rem",
+    backgroundColor: "#e7efc5",
+  },
+  textField: {
+    fontFamily: "Overpass Mono",
+    [`& fieldset`]: {
+      borderRadius: 100,
+      borderWidth: 2,
+      borderColor: "black",
+    },
+  },
+  formTextField: {
+    fontFamily: '"Overpass Mono", "monospace"',
+    fontSize: "1.25rem",
+    width: "18.2rem",
+    height: "2.7rem",
+    [`& fieldset`]: {
+      borderRadius: 100,
+      borderWidth: 2,
+      borderColor: "black",
+    },
+    "& input": {
+      textAlign: "center",
+    },
+    "@media (max-width: 600px)": {
+      fontSize: "1rem",
+      width: "12rem",
+      height: "2rem",
+    },
   },
 });
 function Selector({ formSelect, changeFormValue }) {
@@ -63,14 +111,10 @@ function Selector({ formSelect, changeFormValue }) {
     </>
   );
 }
-function LoginForm({ setLogin }) {
+function LoginForm({ setLogin, setModal }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState("");
-  const closeModal = () => {
-    setShowModal(false);
-  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (username && password) {
@@ -78,82 +122,174 @@ function LoginForm({ setLogin }) {
         username: username,
         password: password,
       };
-      axios.post("https://dollarfinder.herokuapp.com/login", oldUser).then(
+      const loginUrl = "https://dollarfinder.herokuapp.com/login";
+      axios.post(loginUrl, oldUser).then(
         (response) => {
-          var data = response.data;
           const storeLogin = {
-            ...data,
+            ...response.data,
             loginState: true,
           };
           localStorage.setItem("dollarfinderlogin", JSON.stringify(storeLogin));
           setLogin(true);
         },
         (error) => {
-          setModalContent("Incorrect username or password");
-          setShowModal(true);
+          setModal({
+            showModal: true,
+            modalContent: "Incorrect username or password",
+          });
         }
       );
     } else {
-      setModalContent("Please fill in all the fields");
-      setShowModal(true);
+      setModal({
+        showModal: true,
+        modalContent: "Please fill in all the fields",
+      });
     }
   };
+
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
   return (
-    <form
-      id="login-form-id"
-      className="form login-form"
-      onSubmit={handleSubmit}
-    >
-      <input
-        type="text"
-        name="loginusername"
-        placeholder="Username"
-        className="form-text-field email-field"
-        autoComplete="off"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        name="loginpassword"
-        placeholder="Password"
-        className="form-text-field password-field"
-        autoComplete="off"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit" className="form-submit">
-        Login
-      </button>
-      <a
-        href="https://www.youtube.com"
-        id="forgot-password-id"
-        className="forgot-password"
-        rel="noreferrer"
-        target="_blank"
+    <>
+      <form
+        id="login-form-id"
+        className="form login-form"
+        onSubmit={handleSubmit}
       >
-        Forgot password?
-      </a>
-      {showModal && (
-        <Modal
-          closeModal={closeModal}
-          modalContent={modalContent}
-          classname={"login-modal"}
+        <TextField
+          type="text"
+          name="loginusername"
+          placeholder="Username"
+          autoComplete="off"
+          variant="outlined"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          InputProps={{
+            classes: {
+              root: useStyles().formTextField,
+            },
+          }}
         />
-      )}
-    </form>
+        <TextField
+          type="password"
+          name="loginpassword"
+          placeholder="Password"
+          autoComplete="off"
+          variant="outlined"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          InputProps={{
+            classes: {
+              root: useStyles().formTextField,
+            },
+          }}
+        />
+        <button type="submit" className="form-submit">
+          Login
+        </button>
+        <p
+          id="forgot-password-id"
+          className="forgot-password"
+          onClick={handleClickOpen}
+        >
+          Forgot password?
+        </p>
+      </form>
+      <ForgotPassword open={open} setOpen={setOpen} />
+    </>
   );
 }
 
-function RegisterForm() {
+function ForgotPassword({ open, setOpen }) {
+  const [forgotModal, setForgotModal] = useState({
+    showModal: false,
+    modalContent: "",
+  });
+  const closeForgotModal = () => {
+    setForgotModal({ ...forgotModal, showModal: false });
+  };
+  const [forgotEmail, setForgotEmail] = React.useState("");
+  const handleClose = () => {
+    setOpen(false);
+    setForgotEmail("");
+  };
+  const submitForgot = (e) => {
+    e.preventDefault();
+    const postForgotUrl = "https://dollarfinder.herokuapp.com/register/forgot";
+    axios
+      .post(postForgotUrl, {
+        email: forgotEmail,
+      })
+      .then(
+        (response) => {
+          console.log(response);
+          setForgotModal({
+            showModal: true,
+            modalContent: "Email sent. Kindly check your mailbox",
+          });
+        },
+        (error) => {
+          setForgotModal({
+            showModal: true,
+            modalContent: "Server error. Please try again.",
+          });
+        }
+      );
+  };
+  return (
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="form-dialog-title"
+      classes={{ paper: useStyles().dialog }}
+    >
+      <div className="dialog">
+        {forgotModal.showModal && (
+          <Modal
+            closeModal={closeForgotModal}
+            modalContent={forgotModal.modalContent}
+            className={"forgot-password-modal"}
+          />
+        )}
+        <h3>Forgot Password</h3>
+        <p>Please enter your email id to receive a temporary password.</p>
+        <form onSubmit={submitForgot}>
+          <TextField
+            autoFocus
+            id="name"
+            type="email"
+            variant="outlined"
+            required
+            value={forgotEmail}
+            onChange={(e) => setForgotEmail(e.target.value)}
+            autoComplete="off"
+            InputProps={{
+              classes: {
+                root: useStyles().textField,
+              },
+            }}
+            InputLabelProps={{
+              classes: {
+                root: useStyles().textField,
+              },
+            }}
+          />
+          <button type="submit" className="form-submit dialog-form-submit">
+            Submit
+          </button>
+        </form>
+      </div>
+    </Dialog>
+  );
+}
+
+function RegisterForm({ modal, setModal }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState("");
-  const closeModal = () => {
-    setShowModal(false);
-  };
   const handleSubmission = (event) => {
     event.preventDefault();
     if (username && email && password) {
@@ -162,20 +298,26 @@ function RegisterForm() {
         email: email,
         password: password,
       };
-      axios.post("https://dollarfinder.herokuapp.com/register", newUser).then(
+      const registerUrl = "https://dollarfinder.herokuapp.com/register";
+      axios.post(registerUrl, newUser).then(
         (response) => {
-          setModalContent("Registration successful. Proceed to login");
-          setShowModal(true);
+          setModal({
+            showModal: true,
+            modalContent: "Registration successful. Proceed to login",
+          });
         },
         (error) => {
-          console.log(error);
-          setModalContent("Registration failed. Try again!");
-          setShowModal(true);
+          setModal({
+            showModal: true,
+            modalContent: "Registration failed. Try again!",
+          });
         }
       );
     } else {
-      setModalContent("Please fill in all the fields");
-      setShowModal(true);
+      setModal({
+        showModal: true,
+        modalContent: "Please fill in all the fields",
+      });
     }
   };
   return (
@@ -184,43 +326,51 @@ function RegisterForm() {
       className="form register-form"
       onSubmit={handleSubmission}
     >
-      <input
-        type="text"
-        value={email}
+      <TextField
+        type="email"
         name="regemail"
         placeholder="Email"
-        className="form-text-field email-field"
         autoComplete="off"
+        variant="outlined"
+        value={email}
         onChange={(e) => setEmail(e.target.value)}
+        InputProps={{
+          classes: {
+            root: useStyles().formTextField,
+          },
+        }}
       />
-      <input
+      <TextField
         type="text"
-        value={username}
-        name="regpassword"
-        placeholder="Username"
-        className="form-text-field password-field"
-        autoComplete="off"
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        value={password}
         name="regusername"
-        placeholder="Password"
-        className="form-text-field username-field"
+        placeholder="Username"
         autoComplete="off"
+        variant="outlined"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        InputProps={{
+          classes: {
+            root: useStyles().formTextField,
+          },
+        }}
+      />
+      <TextField
+        type="password"
+        name="regpassword"
+        placeholder="Password"
+        autoComplete="off"
+        variant="outlined"
+        value={password}
         onChange={(e) => setPassword(e.target.value)}
+        InputProps={{
+          classes: {
+            root: useStyles().formTextField,
+          },
+        }}
       />
       <button type="submit" className="form-submit">
         Register
       </button>
-      {showModal && (
-        <Modal
-          closeModal={closeModal}
-          modalContent={modalContent}
-          classname={"login-modal"}
-        />
-      )}
     </form>
   );
 }

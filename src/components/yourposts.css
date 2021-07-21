@@ -1,0 +1,47 @@
+.yourposts-container {
+  width: 60vw;
+  height: 44rem;
+  position: relative;
+}
+.yourposts-heading {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: inherit;
+  text-align: center;
+  top: 1.5rem;
+}
+.yourposts-loading {
+  position: absolute;
+  top: 4rem;
+  width: 60vw;
+  height: 40rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.yourposts {
+  position: absolute;
+  top: 4rem;
+  width: 60vw;
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.yourposts-marketplace {
+  height: 35rem;
+  width: 55vw;
+  border-radius: 2rem;
+  border-width: 2px;
+  background-color: #e7efc5;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  box-shadow: 2px 2px 4px 2px #5c706c;
+}

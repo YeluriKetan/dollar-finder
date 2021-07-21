@@ -6,14 +6,17 @@
 
 .about-main {
   background-color: #a3c4bc;
-  width: fit-content;
+  width: 100vw;
   height: fit-content;
-  padding: 10px 0;
+  padding: 0.5rem 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .about-section {
-  margin: 100px 0;
+  margin: 0;
   padding: 0;
   width: 100vw;
   height: fit-content;
@@ -21,46 +24,79 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-items: center;
 }
 .about-article {
   width: fit-content;
-  margin: 0;
+  margin: 0 1rem;
   padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .section-heading {
-  margin: 100px 0;
+  margin: 4rem 0;
   padding: 0;
   text-align: center;
   font-family: "Montserrat", sans-serif;
-  font-size: 36px;
+  font-size: 2.5rem;
 }
 .article-heading {
-  margin: 20px;
+  margin: 1rem;
   padding: 0;
   font-family: "Teko", monospace;
-  font-size: 30px;
+  font-size: 2rem;
   text-align: center;
 }
 .proposal-img {
-  width: 500px;
+  width: 30rem;
+  box-shadow: 2px 2px 4px 2px #5c706c;
 }
 .proposal-video {
-  width: 707px;
-  height: 398px;
+  width: 44rem;
+  height: 24.8rem;
+  box-shadow: 2px 2px 4px 2px #5c706c;
 }
 .about-icon-link {
   text-decoration: none;
-  height: 70px;
-  width: 70px;
+  height: 4rem;
+  width: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  border-radius: 35px;
+  border-radius: 50%;
+  border: solid #85a19b;
 }
 .about-icon-link:hover {
   background-color: #85a19b;
+}
+@media (max-width: 1000px) {
+  .proposal-video {
+    width: 33rem;
+    height: 18.6rem;
+  }
+}
+@media (max-width: 600px) {
+  .about-section {
+    width: 90vw;
+  }
+  .section-heading {
+    margin: 3rem 0;
+    font-size: 2rem;
+  }
+  .article-heading {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+  }
+  .proposal-img {
+    width: 15rem;
+  }
+  .proposal-video {
+    width: 16.5rem;
+    height: 9.1rem;
+  }
+  .about-icon-link {
+    transform: scale(0.8);
+  }
 }

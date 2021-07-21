@@ -11,6 +11,10 @@ CSS for Postmini.js
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  box-shadow: 2px 2px 4px 2px #979c82;
+}
+.marketplace-post:hover {
+  transform: scale(1.05);
 }
 
 .postmini-img {
@@ -61,41 +65,47 @@ CSS for Product.js
 }
 
 .product-back-link {
-  width: 150px;
-  height: 50px;
-  border-radius: 25px;
+  width: 10rem;
+  height: 3rem;
+  border-radius: 1.5rem;
   border-width: 0;
-  margin: 50px 0;
+  margin: 3rem 0;
   padding: 0;
   background-color: #413c58;
   color: white;
   font-family: "Teko", monospace;
-  font-size: 25px;
+  font-size: 1.5rem;
   cursor: pointer;
+  box-shadow: 2px 2px 4px 2px #5c706c;
 }
 .product-back-link:hover {
   background-color: #665e8a;
   transform: scale(1.1);
 }
 .product-background {
-  width: fit-content;
-  height: 600px;
+  width: 70vw;
+  height: 38rem;
   background-color: #e7efc5;
   display: flex;
   flex-direction: row;
-  border-radius: 30px;
-  justify-content: space-between;
+  border-radius: 2rem;
   margin: 0;
-  margin-bottom: 100px;
+  margin-bottom: 6.25rem;
+  box-shadow: 2px 2px 4px 2px #5c706c;
 }
-
+.product-loading {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .product-img {
-  width: 500px;
-  height: 600px;
+  width: 15rem;
+  height: 38rem;
   object-fit: contain;
   background-color: #cad1ad;
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
+  border-radius: 2rem 0 0 2rem;
 }
 .product-info {
   display: flex;
@@ -103,37 +113,116 @@ CSS for Product.js
   justify-content: space-evenly;
   align-items: center;
   font-family: "Overpass Mono", monospace;
-  font-size: 20px;
-  width: 600px;
-  height: 600px;
-}
-
-.product-price {
-  width: fit-content;
-  margin: 0;
-  padding: 0;
+  font-size: 1.25rem;
+  height: 38rem;
+  text-align: center;
+  word-wrap: normal;
 }
 .product-title {
-  width: fit-content;
-  margin: 0;
+  margin: 1rem;
   padding: 0;
-  font-size: 25px;
+  font-size: 1.5rem;
   font-weight: bolder;
 }
-.product-location {
-  width: 500px;
-  margin: 0;
+.product-price {
+  margin: 1rem;
   padding: 0;
-  text-align: center;
 }
-.product-date {
-  margin: 0;
+.product-location {
+  margin: 1rem;
   padding: 0;
-  width: fit-content;
-  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.product-location > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.product-location > p,
+.product-location > div > strong {
+  margin: 1rem;
+}
+.googlemaps-icon-background {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  border: solid #cad1ad;
+}
+.googlemaps-icon-background:hover {
+  background-color: #cad1ad;
+}
+.googlemaps-icon {
+  height: 3rem;
+  margin: 0.5rem;
 }
 .product-description {
-  width: 500px;
-  margin: 0;
+  margin: 1rem;
   padding: 0;
+}
+.product-date {
+  margin: 0 1rem;
+  padding: 0;
+  font-size: 1rem;
+}
+
+@media (max-width: 1000px) {
+  .product-background {
+    flex-direction: column;
+    height: 50rem;
+  }
+  .product-img {
+    width: inherit;
+    height: 15rem;
+  }
+  .product-info {
+    width: inherit;
+    height: 35rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .product-back-link {
+    width: 7rem;
+    margin: 1rem 0;
+    height: 2rem;
+  }
+  .product-background {
+    width: 90vw;
+    margin-bottom: 3rem;
+    height: 45rem;
+  }
+  .product-info {
+    font-size: 1rem;
+    height: 30rem;
+    justify-content: space-around;
+  }
+  .product-title {
+    margin: 0.5rem 1rem;
+    font-size: 1.25rem;
+  }
+  .product-price {
+    margin: 0.5rem 1rem;
+  }
+  .product-location {
+    margin: 0.5rem 1rem;
+    flex-direction: column;
+  }
+  .googlemaps-icon-background {
+    height: 3rem;
+    width: 3rem;
+  }
+  .googlemaps-icon {
+    height: 2rem;
+  }
+  .product-description {
+    margin: 0.5rem 1rem;
+  }
+  .product-date {
+    margin: 0 1rem;
+    font-size: 0.75rem;
+  }
 }

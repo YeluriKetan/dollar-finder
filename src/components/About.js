@@ -9,8 +9,12 @@ import { makeStyles } from "@material-ui/core";
 const useStylesAbout = makeStyles({
   iconLink: {
     color: "#413c58",
-    width: 50,
-    height: 50,
+    width: "3rem",
+    height: "3rem",
+  },
+  "@media (max-width: 600px)": {
+    width: "1rem",
+    height: "1rem",
   },
 });
 function About() {

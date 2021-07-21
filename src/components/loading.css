@@ -1,0 +1,15 @@
+.loading {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+}
+.loading-text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  margin: 2rem 0;
+  padding: 0;
+  display: block;
+}

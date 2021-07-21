@@ -18,6 +18,7 @@
   background-color: #e7efc5;
   border-radius: 3rem;
   overflow-x: hidden;
+  position: relative;
 }
 .forms-container {
   width: 50rem;
@@ -62,23 +63,6 @@
     left: 0;
   }
 }
-.form-text-field {
-  font-family: "Overpass Mono", monospace;
-  text-align: center;
-  padding: 0;
-  font-size: 1.25rem;
-  font-weight: normal;
-  width: 18rem;
-  height: 2.5rem;
-  border-radius: 2rem;
-  margin: 0;
-  background: transparent;
-  color: black;
-  border-color: black;
-}
-.form-text-field:focus {
-  outline: none;
-}
 .form-submit {
   width: 10rem;
   height: 3rem;
@@ -96,17 +80,52 @@
   background-color: #665e8a;
   transform: scale(1.1);
 }
-.form-submit:focus {
-  outline: none;
-}
 .forgot-password {
   font-family: "Teko", monospace;
   text-decoration: none;
   color: #413c58;
   font-size: 1.5rem;
+  margin: 0;
+  cursor: pointer;
 }
 .forgot-password:hover {
   color: #665e8a;
+}
+
+.dialog {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+}
+.dialog > h3 {
+  margin: 0;
+  font-family: "Teko", monospace;
+  font-size: 2rem;
+}
+.dialog > p {
+  font-family: "Overpass Mono", monospace;
+  text-align: center;
+  font-size: 1rem;
+  margin: 0 1rem;
+  word-wrap: normal;
+}
+.dialog > form {
+  height: 7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.dialog-form-submit {
+  width: 7rem;
+  height: 2rem;
+  border-radius: 1rem;
+  border-width: 0;
+  font-size: 1.2rem;
 }
 
 @media (max-width: 600px) {
@@ -141,22 +160,34 @@
       left: 0;
     }
   }
-  .form-text-field {
-    font-size: 1rem;
-    width: 12rem;
-    height: 2rem;
-    border-radius: 2rem;
-  }
   .form-submit {
     width: 6rem;
     height: 2rem;
     border-radius: 1.5rem;
     font-size: 1rem;
   }
-  .form-submit:hover {
-    transform: scale(1.1);
-  }
   .forgot-password {
     font-size: 1rem;
+  }
+
+  .dialog {
+    width: fit-content;
+  }
+  .dialog > p {
+    font-size: 0.75rem;
+  }
+  .dialog > form {
+    height: 7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .dialog-form-submit {
+    width: 7rem;
+    height: 2rem;
+    border-radius: 1rem;
+    border-width: 0;
+    font-size: 1.2rem;
   }
 }

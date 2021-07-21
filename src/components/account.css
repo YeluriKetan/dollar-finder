@@ -11,7 +11,6 @@
 .dashboard-background {
   width: 60vw;
   height: 44rem;
-  overflow-x: hidden;
   position: relative;
   display: inline;
 }
@@ -21,6 +20,7 @@
   position: absolute;
   top: 1.5rem;
   left: 1rem;
+  z-index: 2;
 }
 .dashboard {
   width: 60vw;
@@ -35,6 +35,7 @@
   align-items: center;
   position: absolute;
   z-index: 1;
+  box-shadow: 2px 2px 4px 2px #979c82;
 }
 .selector {
   width: 60vw;
@@ -84,19 +85,39 @@
     opacity: 0.5;
   }
 }
-.profile {
+.profile-container {
   width: 60vw;
   height: 44rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  position: relative;
 }
 .profile-heading {
   font-family: "Montserrat", sans-serif;
   font-size: 2rem;
   margin: 0;
   padding: 0;
+  position: absolute;
+  width: inherit;
+  text-align: center;
+  top: 1.5rem;
+}
+.profile-loading {
+  position: absolute;
+  top: 4rem;
+  width: 60vw;
+  height: 40rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile {
+  position: absolute;
+  top: 4rem;
+  width: 60vw;
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 .profile-pic-container {
   width: 9rem;
@@ -113,11 +134,14 @@
 .profile-info-container {
   display: flex;
   flex-direction: row;
+  height: fit-content;
+  width: inherit;
+  justify-content: space-evenly;
 }
 .profile-label-group {
   margin: 0;
   padding: 0;
-  width: 12.5rem;
+  width: fit-content;
   height: 18.75rem;
   display: flex;
   flex-direction: column;
@@ -130,12 +154,12 @@
   padding: 0;
   height: 3rem;
   line-height: 3rem;
-  width: 12.5rem;
+  width: fit-content;
 }
 .profile-content-group {
   margin: 0;
   padding: 0;
-  width: 25rem;
+  width: fit-content;
   height: 18.75rem;
   display: flex;
   flex-direction: column;
@@ -149,7 +173,7 @@
   padding: 0;
   height: 3rem;
   line-height: 3rem;
-  width: 25rem;
+  width: fit-content;
 }
 .logout-button {
   width: 9rem;
@@ -163,6 +187,7 @@
   font-family: "Teko", monospace;
   font-size: 25px;
   cursor: pointer;
+  box-shadow: 2px 2px 4px 2px #979c82;
 }
 .logout-button:hover {
   background-color: #665e8a;
@@ -207,13 +232,25 @@
       left: 0;
     }
   }
-  .profile {
+
+  .profile-container {
     width: 90vw;
     height: 35rem;
-    justify-content: space-around;
   }
+
   .profile-heading {
     font-size: 1.25rem;
+    top: 1.3rem;
+  }
+  .profile-loading {
+    top: 3rem;
+    width: 90vw;
+    height: 32rem;
+  }
+  .profile {
+    top: 3rem;
+    width: 90vw;
+    height: 32rem;
   }
   .profile-pic-container {
     width: 7rem;
@@ -224,24 +261,20 @@
     height: 7rem;
   }
   .profile-label-group {
-    width: 25vw;
     height: 14rem;
   }
   .profile-label {
     font-size: 1rem;
-    height: 2rem;
     line-height: 2rem;
-    width: 25vw;
+    height: 2rem;
   }
   .profile-content-group {
-    width: 55vw;
     height: 14rem;
   }
   .profile-content {
     font-size: 0.75rem;
     height: 2rem;
     line-height: 2rem;
-    width: 55vw;
   }
   .logout-button {
     width: 5rem;
