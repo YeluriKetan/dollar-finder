@@ -2,7 +2,29 @@ import React from "react";
 import "./createapost.css";
 import axios from "axios";
 import Modal from "./Modal";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core";
 
+const useStylesCreateapost = makeStyles({
+  formButton: {
+    width: "10rem",
+    height: "3rem",
+    borderRadius: "1.5rem",
+    fontFamily: "Teko",
+    fontSize: "1.5rem",
+    textTransform: "none",
+    backgroundColor: "#413c58",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#665e8a",
+    },
+    "@media (max-width: 600px)": {
+      width: "5rem",
+      height: "2rem",
+      fontSize: "1rem",
+    },
+  },
+});
 function Createapost() {
   const [preview, setPreview] = React.useState();
   const [createpost, setCreatePost] = React.useState({
@@ -11,7 +33,6 @@ function Createapost() {
     location: "",
     locationUrl: "",
     description: "",
-    img: "",
   });
   const [showModal, setShowModal] = React.useState(false);
   const [modalContent, setModalContent] = React.useState("");
@@ -24,29 +45,39 @@ function Createapost() {
       createpost.title &&
       createpost.price &&
       createpost.location &&
-      createpost.description
+      createpost.locationUrl &&
+      createpost.description &&
+      preview
     ) {
-      const newPost = {
-        data: [
-          {
-            ...createpost,
-            img: preview,
-          },
-        ],
-      };
       const createpostUrl = "http://dollarfinder.herokuapp.com/posts";
       const loginToken = JSON.parse(
         localStorage.getItem("dollarfinderlogin")
       ).logintoken;
+
       axios
-        .post(createpostUrl, newPost, {
+        .post(createpostUrl, createpost, {
           headers: { logintoken: loginToken },
         })
         .then(
           (response) => {
-            setModalContent("Posted Successfully...");
-            setShowModal(true);
-            handleCancel();
+            const file = document.querySelector("input[type=file]").files[0];
+            const formData = new FormData();
+            formData.append("img", file);
+            axios
+              .post("https://" + response.data.route, formData, {
+                headers: { logintoken: loginToken },
+              })
+              .then(
+                (response) => {
+                  setModalContent("Posted Successfully...");
+                  setShowModal(true);
+                  handleCancel();
+                },
+                (error) => {
+                  setModalContent("Server Error. Please try again...");
+                  setShowModal(true);
+                }
+              );
           },
           (error) => {
             setModalContent("Server Error. Please try again...");
@@ -54,8 +85,19 @@ function Createapost() {
           }
         );
     } else {
-      setModalContent("Please fill in all the fields");
-      setShowModal(true);
+      if (
+        createpost.title &&
+        createpost.price &&
+        createpost.location &&
+        createpost.description &&
+        preview
+      ) {
+        setModalContent("Please select location from dropdown menu");
+        setShowModal(true);
+      } else {
+        setModalContent("Please fill in all the fields");
+        setShowModal(true);
+      }
     }
   };
   const handleCancel = () => {
@@ -63,14 +105,18 @@ function Createapost() {
       title: "",
       price: "",
       location: "",
+      locationUrl: "",
       description: "",
-      img: "",
     });
     setPreview();
     const input = document.getElementById("create-location");
     input.value = "";
+    const inputImg = document.getElementById("create-image");
+    inputImg.value = "";
   };
-  function previewFile() {
+
+  function previewFile(e) {
+    e.preventDefault();
     const file = document.querySelector("input[type=file]").files[0];
     const reader = new FileReader();
 
@@ -79,13 +125,14 @@ function Createapost() {
       function () {
         setPreview(reader.result);
       },
-      false
+      setPreview()
     );
 
     if (file) {
       reader.readAsDataURL(file);
     }
   }
+
   let autocomplete;
   let place;
   function initAutocomplete() {
@@ -193,18 +240,17 @@ function Createapost() {
             Image :
           </label>
           <input
-            id="create-img"
+            id="create-image"
             type="file"
             name="create-img"
             accept="image/*"
             className="create-input"
-            value={createpost.img}
             onChange={(e) => {
-              previewFile();
-              setCreatePost({ ...createpost, img: e.target.value });
+              previewFile(e);
             }}
           />
-          {createpost.img && (
+
+          {preview && (
             <img
               src={preview}
               height="100"
@@ -213,18 +259,22 @@ function Createapost() {
             />
           )}
         </div>
-
         <div className="create-buttons">
-          <button type="submit" className="createpost-form-submit">
+          <Button
+            variant="contained"
+            type="submit"
+            className={useStylesCreateapost().formButton}
+          >
             Post
-          </button>
-          <button
-            type="button"
-            className="createpost-form-submit"
+          </Button>
+          <Button
+            variant="contained"
             onClick={handleCancel}
+            type="button"
+            className={useStylesCreateapost().formButton}
           >
             Cancel
-          </button>
+          </Button>
         </div>
       </form>
     </div>

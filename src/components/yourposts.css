@@ -36,12 +36,36 @@
   height: 35rem;
   width: 55vw;
   border-radius: 2rem;
-  border-width: 2px;
   background-color: #e7efc5;
   overflow-y: scroll;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  box-shadow: 2px 2px 4px 2px #5c706c;
+}
+@media (max-width: 600px) {
+  .yourposts-container {
+    width: 90vw;
+    height: 35rem;
+  }
+  .yourposts-heading {
+    font-size: 1.25rem;
+    top: 1.3rem;
+  }
+  .yourposts-loading {
+    top: 3rem;
+    width: 90vw;
+    height: 32rem;
+  }
+  .yourposts {
+    top: 3rem;
+    width: 90vw;
+    height: 32rem;
+  }
+  .yourposts-marketplace {
+    height: 31rem;
+    width: 85vw;
+    border-radius: 1.5rem;
+    flex-direction: column;
+  }
 }

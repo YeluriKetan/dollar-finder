@@ -1,12 +1,12 @@
 import React from "react";
 import Postmini from "./Postmini";
 import "./marketplace.css";
-import { useGet } from "./useGet";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
 import Loading from "./Loading";
+import axios from "axios";
 
 const useStyles = makeStyles({
   form: {},
@@ -40,10 +40,31 @@ function MarketPlace() {
   const classes = useStyles();
   const [sortMethod, setSortMethod] = React.useState(0);
   const getPostUrl = "https://dollarfinder.herokuapp.com/posts";
+  const [loading, setLoading] = React.useState(true);
+  const [data, setData] = React.useState([]);
   const handleSelectChange = (event) => {
     setSortMethod(event.target.value);
   };
-  const { data, loading } = useGet(getPostUrl, "market");
+  const getData = async () => {
+    setLoading(true);
+    await axios
+      .get(getPostUrl, {
+        headers: {
+          sortmethod: sortMethod,
+        },
+      })
+      .then(
+        (response) => {
+          setData(response.data);
+        },
+        (error) => {}
+      );
+    setLoading(false);
+  };
+  React.useEffect(() => {
+    getData();
+    // eslint-disable-next-line
+  }, [sortMethod]);
   return (
     <div className="marketplace-background">
       <div className="marketplace-sortby-form">
@@ -79,14 +100,14 @@ function MarketPlace() {
           data
             .filter(
               (obj) =>
-                obj.hasOwnProperty("id") &&
                 obj.hasOwnProperty("title") &&
                 obj.hasOwnProperty("price") &&
                 obj.hasOwnProperty("location") &&
+                obj.hasOwnProperty("img") &&
                 obj.hasOwnProperty("date")
             )
             .map((obj) => {
-              return <Postmini key={obj.id} {...obj} />;
+              return <Postmini key={obj.id} {...obj} yourPost={false} />;
             })
         )}
       </div>

@@ -63,7 +63,7 @@
   height: fit-content;
   padding: 0.5rem 0;
 }
-#create-img {
+#create-image {
   border-radius: 0;
   box-shadow: none;
 }
@@ -81,27 +81,6 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-}
-.createpost-form-submit {
-  width: 10rem;
-  height: 3rem;
-  border-radius: 1.5rem;
-  border-width: 0;
-  margin: 0;
-  padding: 0;
-  background-color: #413c58;
-  color: white;
-  font-family: "Teko", monospace;
-  font-size: 1.5rem;
-  cursor: pointer;
-  box-shadow: 2px 2px 4px 2px #5c706c;
-}
-.createpost-form-submit:hover {
-  background-color: #665e8a;
-  transform: scale(1.1);
-}
-.createpost-form-submit:focus {
-  outline: none;
 }
 .pac-container {
   border-radius: 0.5rem;
@@ -174,11 +153,6 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-  }
-  .createpost-form-submit {
-    width: 5rem;
-    height: 2rem;
-    font-size: 1rem;
   }
   .pac-item {
     font-size: 0.4rem;

@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import MenuIcon from "@material-ui/icons/Menu";
 import Loading from "./Loading";
 import { useGetHeader } from "./useGet";
+import axios from "axios";
 import Advanced from "./Advanced";
 import YourPosts from "./Yourposts";
 
@@ -39,6 +40,26 @@ const useStyles = makeStyles({
   indicator: {
     backgroundColor: "#a3c4bc",
   },
+  logoutButton: {
+    width: "10rem",
+    height: "3rem",
+    borderRadius: "1.5rem",
+    fontFamily: "Teko",
+    fontSize: "1.5rem",
+    textTransform: "none",
+    backgroundColor: "#413c58",
+    color: "white",
+    margin: "3rem 0 0 0",
+    "&:hover": {
+      backgroundColor: "#665e8a",
+    },
+    "@media (max-width: 600px)": {
+      width: "5rem",
+      height: "2rem",
+      fontSize: "1rem",
+      margin: "0.5rem 0",
+    },
+  },
 });
 
 function Account({ setLogin }) {
@@ -59,13 +80,30 @@ function Account({ setLogin }) {
   };
   const handleLogout = (e) => {
     e.preventDefault();
-    setLogin(false);
-    const newLoginStorage = {
-      loginState: false,
-      username: "",
-      logintoken: "",
-    };
-    localStorage.setItem("dollarfinderlogin", JSON.stringify(newLoginStorage));
+    const logoutUrl = "https://dollarfinder.herokuapp.com/account/logout";
+    const loginToken = JSON.parse(
+      localStorage.getItem("dollarfinderlogin")
+    ).logintoken;
+    axios
+      .get(logoutUrl, {
+        headers: {
+          logintoken: loginToken,
+        },
+      })
+      .then(
+        (response) => {
+          setLogin(false);
+          const newLoginStorage = {
+            loginState: false,
+            logintoken: "",
+          };
+          localStorage.setItem(
+            "dollarfinderlogin",
+            JSON.stringify(newLoginStorage)
+          );
+        },
+        (error) => {}
+      );
   };
   const [state, setState] = React.useState(false);
   const toggleDrawer = (open) => (event) => {
@@ -97,9 +135,14 @@ function Account({ setLogin }) {
         )}
       </div>
 
-      <button type="button" className="logout-button" onClick={handleLogout}>
+      <Button
+        type="button"
+        variant="contained"
+        className={useStyles().logoutButton}
+        onClick={handleLogout}
+      >
         Logout
-      </button>
+      </Button>
     </main>
   );
 }
@@ -135,7 +178,6 @@ function Selector({ dashboardValue, changeDashboardValue, setState }) {
 function Profile() {
   const getProfileUrl = "https://dollarfinder.herokuapp.com/account";
   const { data, loading } = useGetHeader(getProfileUrl, "market");
-  const date = "Coming soon...";
   return (
     <div className="profile-container">
       <h3 className="profile-heading">Your Account</h3>
@@ -163,7 +205,11 @@ function Profile() {
             <div className="profile-content-group">
               <p className="profile-content">{data.username}</p>
               <p className="profile-content">{data.email}</p>
-              <p className="profile-content">{date}</p>
+              <p className="profile-content">
+                {data.date
+                  ? data.date.slice(0, 10).split("-").reverse().join("-")
+                  : "Not Available"}
+              </p>
             </div>
           </div>
         </div>

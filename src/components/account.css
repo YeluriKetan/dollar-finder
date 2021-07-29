@@ -175,24 +175,6 @@
   line-height: 3rem;
   width: fit-content;
 }
-.logout-button {
-  width: 9rem;
-  height: 3rem;
-  border-radius: 1.5rem;
-  border-width: 0;
-  margin: 3rem 0 0 0;
-  padding: 0;
-  background-color: #413c58;
-  color: white;
-  font-family: "Teko", monospace;
-  font-size: 25px;
-  cursor: pointer;
-  box-shadow: 2px 2px 4px 2px #979c82;
-}
-.logout-button:hover {
-  background-color: #665e8a;
-  transform: scale(1.1);
-}
 
 @media (max-width: 600px) {
   .account-main {
@@ -275,12 +257,5 @@
     font-size: 0.75rem;
     height: 2rem;
     line-height: 2rem;
-  }
-  .logout-button {
-    width: 5rem;
-    height: 2rem;
-    border-radius: 1rem;
-    margin: 0.5rem 0;
-    font-size: 1rem;
   }
 }

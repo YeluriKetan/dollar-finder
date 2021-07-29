@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core";
 import Modal from "./Modal";
 import Dialog from "@material-ui/core/Dialog";
+import Button from "@material-ui/core/Button";
 import axios from "axios";
 
 const useStyles = makeStyles({
@@ -32,6 +33,44 @@ const useStyles = makeStyles({
     borderRadius: "1rem",
     backgroundColor: "#e7efc5",
   },
+  advancedButton: {
+    width: "12rem",
+    height: "3rem",
+    borderRadius: "1.5rem",
+    fontFamily: "Teko",
+    fontSize: "1.5rem",
+    textTransform: "none",
+    backgroundColor: "#413c58",
+    color: "white",
+    padding: 0,
+    "&:hover": {
+      backgroundColor: "#665e8a",
+    },
+    "@media (max-width: 600px)": {
+      width: "8rem",
+      height: "2rem",
+      fontSize: "1rem",
+    },
+  },
+  advancedDeleteButton: {
+    width: "10rem",
+    height: "3rem",
+    borderRadius: "1.5rem",
+    fontFamily: "Teko",
+    fontSize: "1.5rem",
+    textTransform: "none",
+    backgroundColor: "#413c58",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#665e8a",
+    },
+    "@media (max-width: 600px)": {
+      width: "7rem",
+      height: "2rem",
+      fontSize: "1rem",
+      margin: "0.5rem",
+    },
+  },
 });
 
 function Advanced() {
@@ -59,17 +98,20 @@ function Advanced() {
           })
           .then(
             (response) => {
-              console.log(response);
               setChangepwModal({
                 showModal: true,
                 modalContent: "Password Change successful.",
               });
+              setPassword1("");
+              setPassword2("");
             },
             (error) => {
               setChangepwModal({
                 showModal: true,
                 modalContent: "Server error. Try again.",
               });
+              setPassword1("");
+              setPassword2("");
             }
           );
       } else {
@@ -139,19 +181,25 @@ function Advanced() {
               },
             }}
           />
-          <button type="submit" className="advanced-button">
+          <Button
+            type="submit"
+            variant="contained"
+            className={useStyles().advancedButton}
+          >
             Change Password
-          </button>
+          </Button>
         </form>
         <div class="advanced-divider"></div>
         <div className="advanced-del-acct">
-          <button
+          <Button
             type="button"
-            className="advanced-button"
+            variant="contained"
+            disabled
+            className={useStyles().advancedButton}
             onClick={handleClickOpenDelete}
           >
             Delete Account
-          </button>
+          </Button>
         </div>
       </div>
       <Dialog
@@ -171,20 +219,22 @@ function Advanced() {
             your account?
           </p>
           <div className="dialog-delete-buttons">
-            <button
+            <Button
               type="button"
-              className="advanced-button advanced-delete-button"
+              variant="contained"
+              className={useStyles().advancedDeleteButton}
               onClick={handleDeleteAcct}
             >
               Confirm Delete
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
-              className="advanced-button advanced-delete-button"
+              variant="contained"
+              className={useStyles().advancedDeleteButton}
               onClick={handleCloseDelete}
             >
               Cancel
-            </button>
+            </Button>
           </div>
         </div>
       </Dialog>

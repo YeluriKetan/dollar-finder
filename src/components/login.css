@@ -63,23 +63,6 @@
     left: 0;
   }
 }
-.form-submit {
-  width: 10rem;
-  height: 3rem;
-  border-radius: 1.5rem;
-  border-width: 0;
-  margin: 0;
-  padding: 0;
-  background-color: #413c58;
-  color: white;
-  font-family: "Teko", monospace;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-.form-submit:hover {
-  background-color: #665e8a;
-  transform: scale(1.1);
-}
 .forgot-password {
   font-family: "Teko", monospace;
   text-decoration: none;
@@ -159,12 +142,6 @@
     to {
       left: 0;
     }
-  }
-  .form-submit {
-    width: 6rem;
-    height: 2rem;
-    border-radius: 1.5rem;
-    font-size: 1rem;
   }
   .forgot-password {
     font-size: 1rem;

@@ -5,7 +5,7 @@ import Loading from "./Loading";
 import Postmini from "./Postmini";
 
 function Yourposts() {
-  const getYourpostsUrl = "https://dollarfinder.herokuapp.com/posts";
+  const getYourpostsUrl = "https://dollarfinder.herokuapp.com/account/posts";
   const { data, loading } = useGetHeader(getYourpostsUrl, "yourposts-market");
   return (
     <div className="yourposts-container">
@@ -27,7 +27,7 @@ function Yourposts() {
                   obj.hasOwnProperty("date")
               )
               .map((obj) => {
-                return <Postmini key={obj.id} {...obj} />;
+                return <Postmini key={obj.id} {...obj} yourPost={true} />;
               })}
           </div>
         </div>
