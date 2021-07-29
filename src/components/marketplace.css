@@ -23,6 +23,7 @@
 .posts-background {
   width: 90vw;
   height: fit-content;
+  min-height: 10rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

@@ -7,6 +7,7 @@ import Modal from "./Modal";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import axios from "axios";
+import Button from "@material-ui/core/Button";
 
 function Login({ setLogin }) {
   const [modal, setModal] = useState({ showModal: false, modalContent: "" });
@@ -94,6 +95,37 @@ const useStyles = makeStyles({
       height: "2rem",
     },
   },
+  loginFormButton: {
+    width: "10rem",
+    height: "3rem",
+    borderRadius: "1.5rem",
+    fontFamily: "Teko",
+    fontSize: "1.5rem",
+    textTransform: "none",
+    backgroundColor: "#413c58",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#665e8a",
+    },
+    "@media (max-width: 600px)": {
+      width: "6rem",
+      height: "2rem",
+      fontSize: "1rem",
+    },
+  },
+  forgotDialogButton: {
+    width: "7rem",
+    height: "2rem",
+    borderRadius: "1rem",
+    fontFamily: "Teko",
+    fontSize: "1.2rem",
+    textTransform: "none",
+    backgroundColor: "#413c58",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#665e8a",
+    },
+  },
 });
 function Selector({ formSelect, changeFormValue }) {
   return (
@@ -126,7 +158,7 @@ function LoginForm({ setLogin, setModal }) {
       axios.post(loginUrl, oldUser).then(
         (response) => {
           const storeLogin = {
-            ...response.data,
+            logintoken: response.data,
             loginState: true,
           };
           localStorage.setItem("dollarfinderlogin", JSON.stringify(storeLogin));
@@ -187,9 +219,13 @@ function LoginForm({ setLogin, setModal }) {
             },
           }}
         />
-        <button type="submit" className="form-submit">
+        <Button
+          variant="contained"
+          type="submit"
+          className={useStyles().loginFormButton}
+        >
           Login
-        </button>
+        </Button>
         <p
           id="forgot-password-id"
           className="forgot-password"
@@ -225,7 +261,6 @@ function ForgotPassword({ open, setOpen }) {
       })
       .then(
         (response) => {
-          console.log(response);
           setForgotModal({
             showModal: true,
             modalContent: "Email sent. Kindly check your mailbox",
@@ -277,9 +312,13 @@ function ForgotPassword({ open, setOpen }) {
               },
             }}
           />
-          <button type="submit" className="form-submit dialog-form-submit">
+          <Button
+            variant="contained"
+            type="submit"
+            className={useStyles().forgotDialogButton}
+          >
             Submit
-          </button>
+          </Button>
         </form>
       </div>
     </Dialog>
@@ -368,9 +407,13 @@ function RegisterForm({ modal, setModal }) {
           },
         }}
       />
-      <button type="submit" className="form-submit">
+      <Button
+        variant="contained"
+        type="submit"
+        className={useStyles().loginFormButton}
+      >
         Register
-      </button>
+      </Button>
     </form>
   );
 }

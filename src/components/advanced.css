@@ -83,28 +83,6 @@
   justify-content: space-evenly;
 }
 
-.advanced-button {
-  width: 12rem;
-  height: 3rem;
-  border-radius: 1.5rem;
-  border-width: 0;
-  margin: 0;
-  padding: 0;
-  background-color: #413c58;
-  color: white;
-  font-family: "Teko", monospace;
-  font-size: 1.5rem;
-  cursor: pointer;
-  box-shadow: 2px 2px 4px 2px #5c706c;
-}
-.advanced-button:hover {
-  background-color: #665e8a;
-  transform: scale(1.1);
-}
-.advanced-delete-button {
-  width: 9rem;
-  box-shadow: 2px 2px 4px 2px #979c82;
-}
 @media (max-width: 1000px) {
   .advanced {
     flex-direction: column;
@@ -148,12 +126,6 @@
   .advanced-del-acct {
     height: 5rem;
   }
-  .advanced-button {
-    width: 8rem;
-    height: 2rem;
-    border-radius: 1rem;
-    font-size: 1rem;
-  }
 
   .dialog-delete {
     width: fit-content;
@@ -168,9 +140,5 @@
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
-  }
-  .advanced-delete-button {
-    width: 7rem;
-    margin: 0.5rem 0.5rem;
   }
 }

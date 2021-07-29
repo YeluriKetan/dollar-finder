@@ -1,60 +1,3 @@
-/*
-CSS for Postmini.js
-*/
-
-.marketplace-post {
-  height: 16rem;
-  width: 20rem;
-  background-color: #a3c4bc;
-  margin: 0.625rem;
-  border-radius: 0.625rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  box-shadow: 2px 2px 4px 2px #979c82;
-}
-.marketplace-post:hover {
-  transform: scale(1.05);
-}
-
-.postmini-img {
-  width: 20rem;
-  height: 10rem;
-  object-fit: contain;
-  background-color: white;
-}
-
-.postmini-info {
-  font-family: "Overpass Mono", monospace;
-  font-size: 1rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 20rem;
-  height: 3rem;
-  color: #413c58;
-  text-align: center;
-}
-
-.postmini-title,
-.postmini-location {
-  width: 12rem;
-  margin: 0;
-}
-
-.postmini-price {
-  width: 5rem;
-  margin: 0;
-}
-.postmini-date {
-  width: 8rem;
-  margin: 0;
-}
-/*
-CSS for Product.js
-*/
-
 .product-main {
   width: 100vw;
   height: fit-content;
@@ -62,41 +5,37 @@ CSS for Product.js
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0;
+  padding: 6.25rem 0;
 }
-
-.product-back-link {
-  width: 10rem;
-  height: 3rem;
-  border-radius: 1.5rem;
-  border-width: 0;
-  margin: 3rem 0;
-  padding: 0;
-  background-color: #413c58;
-  color: white;
-  font-family: "Teko", monospace;
-  font-size: 1.5rem;
-  cursor: pointer;
-  box-shadow: 2px 2px 4px 2px #5c706c;
-}
-.product-back-link:hover {
-  background-color: #665e8a;
-  transform: scale(1.1);
+.product-page-background {
+  border-radius: 2rem;
+  overflow: hidden;
 }
 .product-background {
   width: 70vw;
-  height: 38rem;
+  height: fit-content;
   background-color: #e7efc5;
   display: flex;
-  flex-direction: row;
-  border-radius: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 0;
-  margin-bottom: 6.25rem;
-  box-shadow: 2px 2px 4px 2px #5c706c;
+  overflow-x: hidden;
 }
 .product-loading {
   width: inherit;
-  height: inherit;
+  height: 85vh;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.product-container {
+  width: 70vw;
+  height: 38rem;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
@@ -105,7 +44,6 @@ CSS for Product.js
   height: 38rem;
   object-fit: contain;
   background-color: #cad1ad;
-  border-radius: 2rem 0 0 2rem;
 }
 .product-info {
   display: flex;
@@ -117,6 +55,7 @@ CSS for Product.js
   height: 38rem;
   text-align: center;
   word-wrap: normal;
+  width: calc(70vw - 15rem);
 }
 .product-title {
   margin: 1rem;
@@ -168,37 +107,87 @@ CSS for Product.js
   padding: 0;
   font-size: 1rem;
 }
+.product-review {
+  height: fit-content;
+  width: 70vw;
+  background-color: #c6cf9f;
+}
+.product-votebox {
+  height: 5rem;
+  width: 70vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.product-vote-count {
+  width: 2rem;
+  height: fit-content;
+  margin: 0 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+/* .product-commentbox-heading {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  margin: 0 1rem;
+}
+.product-commentbox-content {
+  width: inherit;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+.product-commentbox-newcomment {
+  width: 60vw;
+  height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 1rem 0;
+} */
 
 @media (max-width: 1000px) {
-  .product-background {
+  .product-container {
     flex-direction: column;
     height: 50rem;
   }
   .product-img {
-    width: inherit;
+    width: 70vw;
     height: 15rem;
   }
   .product-info {
-    width: inherit;
+    width: 70vw;
     height: 35rem;
   }
 }
 
 @media (max-width: 600px) {
+  .product-main {
+    margin: 0;
+    padding: 3rem 0;
+  }
   .product-back-link {
     width: 7rem;
     margin: 1rem 0;
     height: 2rem;
   }
   .product-background {
-    width: 90vw;
-    margin-bottom: 3rem;
+    width: 80vw;
+  }
+  .product-container {
+    width: 80vw;
     height: 45rem;
+  }
+  .product-img {
+    width: 80vw;
   }
   .product-info {
     font-size: 1rem;
     height: 30rem;
     justify-content: space-around;
+    width: 80vw;
   }
   .product-title {
     margin: 0.5rem 1rem;
@@ -224,5 +213,22 @@ CSS for Product.js
   .product-date {
     margin: 0 1rem;
     font-size: 0.75rem;
+  }
+  .product-review {
+    height: fit-content;
+    width: 80vw;
+  }
+  .product-votebox {
+    width: 80vw;
+    height: 4rem;
+  }
+  .product-vote-count {
+    margin: 0;
+    font-size: 1rem;
+  }
+  .product-commentbox-heading {
+    font-size: 1rem;
+  }
+  .product-commentbox-content {
   }
 }
