@@ -52,3 +52,14 @@ Back-end --> [his repo](https://github.com/CommanderW324/DollarFinderServer)
 
 An AY2020-2021 CP2106 Independent Software Development Project (Orbital)
 by students of SoC NUS.
+
+## Repo stats
+
+- repo created on 23rd June, 2021
+- latest update on 31st July, 2021
+- approx. 4160 lines of written code over a span of 39 days in 41 commits to the main branch
+- around 200 hours spent on this project
+
+## Author
+
+[Yeluri Ketan](https://github.com/YeluriKetan) - Undergraduate, Computer Science, NUS '24

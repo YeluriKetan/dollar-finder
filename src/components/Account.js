@@ -92,19 +92,15 @@ function Account({ setLogin }) {
         },
       })
       .then(
-        (response) => {
-          setLogin(false);
-          const newLoginStorage = {
-            loginState: false,
-            logintoken: "",
-          };
-          localStorage.setItem(
-            "dollarfinderlogin",
-            JSON.stringify(newLoginStorage)
-          );
-        },
+        (response) => {},
         (error) => {}
       );
+    setLogin(false);
+    const newLoginStorage = {
+      loginState: false,
+      logintoken: "",
+    };
+    localStorage.setItem("dollarfinderlogin", JSON.stringify(newLoginStorage));
   };
   const [state, setState] = React.useState(false);
   const toggleDrawer = (open) => (event) => {
