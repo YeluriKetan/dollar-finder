@@ -1,7 +1,7 @@
 import React from "react";
 import "./about.css";
 import Demo1 from "./../images/Demo1.mp4";
-import Demo2 from "./../images/Demo2.mp4";
+import Demo2 from "./../images/Demo2F.mp4";
 import Demo3 from "./../images/Demo3.mp4";
 import Demo4 from "./../images/Demo4.mp4";
 

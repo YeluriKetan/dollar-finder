@@ -277,6 +277,7 @@ const ProductData = ({
   React.useEffect(() => {
     setVoteValue(data.totalVote);
     setVoteCount(data.vote);
+    // eslint-disable-next-line
   }, []);
   return (
     <div className="product-background">
