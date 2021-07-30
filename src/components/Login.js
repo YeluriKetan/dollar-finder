@@ -137,7 +137,7 @@ function Selector({ formSelect, changeFormValue }) {
           onChange={(event, newValue) => changeFormValue(newValue)}
         >
           <Tab label="Login" className={useStyles().tab} />
-          <Tab label="Register" className={useStyles().tab} />
+          <Tab label="Sign Up" className={useStyles().tab} />
         </Tabs>
       </ThemeProvider>
     </>
@@ -342,13 +342,13 @@ function RegisterForm({ modal, setModal }) {
         (response) => {
           setModal({
             showModal: true,
-            modalContent: "Registration successful. Proceed to login",
+            modalContent: "Sign Up successful. Proceed to login",
           });
         },
         (error) => {
           setModal({
             showModal: true,
-            modalContent: "Registration failed. Try again!",
+            modalContent: "Sign Up failed. Try again!",
           });
         }
       );
@@ -412,7 +412,7 @@ function RegisterForm({ modal, setModal }) {
         type="submit"
         className={useStyles().loginFormButton}
       >
-        Register
+        Sign Up
       </Button>
     </form>
   );

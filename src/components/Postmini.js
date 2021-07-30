@@ -12,7 +12,7 @@ import Button from "@material-ui/core/Button";
 const useStyles = makeStyles({
   dialog: {
     width: "fit-content",
-    height: "85vh",
+    height: "fit-content",
     borderRadius: "2rem",
     maxHeight: "none",
     position: "relative",

@@ -1,12 +1,12 @@
 # Dollar Finder
 
-## _FIND the best deals, and save your DOLLARS_
+## _FIND the best deals and save your DOLLARS_
 
 Dollar Finder is a platform that facilitates sharing of information regarding better priced daily necessities and utilities, so that students can easily share and see deals that will help save money.
 
 ## Web Version
 
-Access the latest stable version of [Dollar Finder](https://modest-liskov-638a8a.netlify.app/).
+Access the latest stable version of [Dollar Finder](https://dollarfinder.netlify.app/).
 
 ## Tech
 
@@ -42,11 +42,11 @@ Y
 
 ## Developers
 
-Front-end, this repo
+Front-end --> this repo
 
 - [Yeluri Ketan](https://github.com/YeluriKetan) - Computer Science, NUS '24
 
-Back-end, [his repo](https://github.com/CommanderW324/DollarFinderServer)
+Back-end --> [his repo](https://github.com/CommanderW324/DollarFinderServer)
 
 - [Winston Cahya](https://github.com/CommanderW324) - Computer Science, NUS '24
 

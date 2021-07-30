@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import "./product.css";
-import { useGet } from "./useGet";
+import { useGetHeader } from "./useGet";
 import GoogleMapsIcon from "./../images/googlemaps.svg";
 import Loading from "./Loading";
 import ThumbUpAltOutlinedIcon from "@material-ui/icons/ThumbUpAltOutlined";
@@ -10,6 +10,7 @@ import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
 import Checkbox from "@material-ui/core/Checkbox";
 import { makeStyles } from "@material-ui/core";
+import axios from "axios";
 // import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 // import Button from "@material-ui/core/Button";
 // import AddCommentIcon from "@material-ui/icons/AddComment";
@@ -91,24 +92,17 @@ const useStylesProduct = makeStyles({
   },
 });
 export const ProductInfo = ({ id }) => {
+  const initialLoginState = () => {
+    if (!localStorage.hasOwnProperty("dollarfinderlogin")) {
+      return false;
+    } else {
+      return JSON.parse(localStorage.getItem("dollarfinderlogin")).loginState;
+    }
+  };
+  const loginState = initialLoginState();
   const getPostUrl = `https://dollarfinder.herokuapp.com/posts/${id}`;
-  const { data, loading } = useGet(getPostUrl, "product");
-  const [voteCount, setVoteCount] = React.useState(0);
+  const { data, loading } = useGetHeader(getPostUrl, "product");
   // const [newComment, setNewComment] = React.useState("");
-  const handleUpvote = () => {
-    if (voteCount === 1) {
-      setVoteCount(0);
-    } else {
-      setVoteCount(1);
-    }
-  };
-  const handleDownvote = () => {
-    if (voteCount === -1) {
-      setVoteCount(0);
-    } else {
-      setVoteCount(-1);
-    }
-  };
   // const handleNewComment = (e) => {
   //   e.preventDefault();
   //   setNewComment("");
@@ -122,9 +116,7 @@ export const ProductInfo = ({ id }) => {
   ) : (
     <ProductData
       data={data}
-      handleUpvote={handleUpvote}
-      handleDownvote={handleDownvote}
-      voteCount={voteCount}
+      loginState={loginState}
       // newComment={newComment}
       // setNewComment={setNewComment}
       // handleNewComment={handleNewComment}
@@ -134,15 +126,158 @@ export const ProductInfo = ({ id }) => {
 
 const ProductData = ({
   data,
-  handleUpvote,
-  handleDownvote,
-  voteCount,
+  loginState,
   // newComment,
   // setNewComment,
   // handleNewComment,
 }) => {
-  const { img, title, price, location, locationUrl, date } = data;
-
+  const { id, img, title, price, location, locationUrl, date } = data.post;
+  const [voteValue, setVoteValue] = React.useState(0);
+  const [voteCount, setVoteCount] = React.useState(0);
+  const [disableVote, setDisableVote] = React.useState(!loginState);
+  const votePostUrl = "https://dollarfinder.herokuapp.com/posts/vote";
+  const handleUpvote = () => {
+    const loginToken = JSON.parse(
+      localStorage.getItem("dollarfinderlogin")
+    ).logintoken;
+    switch (voteCount) {
+      case -1:
+        axios
+          .put(
+            votePostUrl,
+            { vote: 1, postId: id },
+            {
+              headers: {
+                logintoken: loginToken,
+              },
+            }
+          )
+          .then(
+            (response) => {
+              setVoteCount(1);
+              setVoteValue(voteValue + 2);
+              setDisableVote(true);
+            },
+            (error) => {}
+          );
+        break;
+      case 0:
+        axios
+          .put(
+            votePostUrl,
+            { vote: 1, postId: id },
+            {
+              headers: {
+                logintoken: loginToken,
+              },
+            }
+          )
+          .then(
+            (response) => {
+              setVoteCount(1);
+              setVoteValue(voteValue + 1);
+              setDisableVote(true);
+            },
+            (error) => {}
+          );
+        break;
+      case 1:
+        axios
+          .put(
+            votePostUrl,
+            { vote: 0, postId: id },
+            {
+              headers: {
+                logintoken: loginToken,
+              },
+            }
+          )
+          .then(
+            (response) => {
+              setVoteCount(0);
+              setVoteValue(voteValue - 1);
+              setDisableVote(true);
+            },
+            (error) => {}
+          );
+        break;
+      default:
+        break;
+    }
+  };
+  const handleDownvote = () => {
+    const loginToken = JSON.parse(
+      localStorage.getItem("dollarfinderlogin")
+    ).logintoken;
+    switch (voteCount) {
+      case -1:
+        axios
+          .put(
+            votePostUrl,
+            { vote: 0, postId: id },
+            {
+              headers: {
+                logintoken: loginToken,
+              },
+            }
+          )
+          .then(
+            (response) => {
+              setVoteCount(0);
+              setVoteValue(voteValue + 1);
+              setDisableVote(true);
+            },
+            (error) => {}
+          );
+        break;
+      case 0:
+        axios
+          .put(
+            votePostUrl,
+            { vote: -1, postId: id },
+            {
+              headers: {
+                logintoken: loginToken,
+              },
+            }
+          )
+          .then(
+            (response) => {
+              setVoteCount(-1);
+              setVoteValue(voteValue - 1);
+              setDisableVote(true);
+            },
+            (error) => {}
+          );
+        break;
+      case 1:
+        axios
+          .put(
+            votePostUrl,
+            { vote: -1, postId: id },
+            {
+              headers: {
+                logintoken: loginToken,
+              },
+            }
+          )
+          .then(
+            (response) => {
+              setVoteCount(-1);
+              setVoteValue(voteValue - 2);
+              setDisableVote(true);
+            },
+            (error) => {}
+          );
+        break;
+      default:
+        break;
+    }
+  };
+  React.useEffect(() => {
+    setVoteValue(data.totalVote);
+    setVoteCount(data.vote);
+  }, []);
   return (
     <div className="product-background">
       <div className="product-container">
@@ -191,8 +326,9 @@ const ProductData = ({
             className={useStylesProduct().voteCheckbox}
             onClick={handleUpvote}
             checked={voteCount === 1}
+            disabled={disableVote}
           />
-          <p className="product-vote-count">{voteCount}</p>
+          <p className="product-vote-count">{voteValue}</p>
           <Checkbox
             icon={
               <ThumbDownOutlinedIcon className={useStylesProduct().downvote} />
@@ -203,6 +339,7 @@ const ProductData = ({
             className={useStylesProduct().voteCheckbox}
             onClick={handleDownvote}
             checked={voteCount === -1}
+            disabled={disableVote}
           />
         </div>
         {/* <h4 className="product-commentbox-heading">Comments</h4>

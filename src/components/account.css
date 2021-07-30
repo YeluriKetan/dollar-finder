@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url(./../images/image_2021-07-30_16-56-41.png);
 }
 .dashboard-background {
   width: 60vw;
@@ -35,7 +36,7 @@
   align-items: center;
   position: absolute;
   z-index: 1;
-  box-shadow: 2px 2px 4px 2px #979c82;
+  box-shadow: 0 0 10px 10px rgb(0, 0, 0, 0.3);
 }
 .selector {
   width: 60vw;
