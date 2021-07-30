@@ -15,14 +15,26 @@
   background-color: #a3c4bc;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  background-image: url(./../images/image_2021-07-29_21-26-06.png);
+  background-repeat: no-repeat;
+  background-position: 50% 15%;
+  position: relative;
 }
 
 .logo-text {
   height: 6.25rem;
   padding: 0;
+  margin: 0.5rem 0;
+}
+.logo-tagline {
+  font-family: "Teko", monospace;
+  font-size: 2.5rem;
   margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  text-align: center;
 }
 .search-form {
   width: 31.25rem;
@@ -80,9 +92,14 @@ input[type="search"]::-webkit-search-results-decoration {
 @media (max-width: 600px) {
   .search-bar-background {
     height: 12rem;
+    background-position: 70% 75%;
   }
   .logo-text {
     height: 4rem;
+  }
+  .logo-tagline {
+    font-size: 1.5rem;
+    width: 90vw;
   }
   .search-form {
     transform: scale(0.6);

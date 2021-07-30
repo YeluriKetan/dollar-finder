@@ -50,6 +50,7 @@ const useStyles = makeStyles({
     backgroundColor: "#413c58",
     color: "white",
     margin: "3rem 0 0 0",
+    boxShadow: "0 0 5px 5px rgb(0, 0, 0, 0.3)",
     "&:hover": {
       backgroundColor: "#665e8a",
     },

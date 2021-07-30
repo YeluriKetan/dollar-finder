@@ -14,6 +14,11 @@ import Login from "./components/Login";
 function App() {
   const initialLoginState = () => {
     if (!localStorage.hasOwnProperty("dollarfinderlogin")) {
+      const storeLogin = {
+        logintoken: "",
+        loginState: false,
+      };
+      localStorage.setItem("dollarfinderlogin", JSON.stringify(storeLogin));
       return false;
     } else {
       return JSON.parse(localStorage.getItem("dollarfinderlogin")).loginState;

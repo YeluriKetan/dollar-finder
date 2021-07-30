@@ -93,7 +93,7 @@ function Advanced() {
         ).logintoken;
         const payload = { password: password1 };
         axios
-          .post(changepwUrl, payload, {
+          .put(changepwUrl, payload, {
             headers: { logintoken: loginToken },
           })
           .then(
