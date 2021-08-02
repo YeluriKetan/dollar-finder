@@ -345,6 +345,9 @@ function RegisterForm({ modal, setModal }) {
             modalContent:
               "Verification email sent to your email. Please verify before you login.",
           });
+          setUsername("");
+          setEmail("");
+          setPassword("");
         },
         (error) => {
           setModal({
