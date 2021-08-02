@@ -342,7 +342,8 @@ function RegisterForm({ modal, setModal }) {
         (response) => {
           setModal({
             showModal: true,
-            modalContent: "Sign Up successful. Proceed to login",
+            modalContent:
+              "Verification email sent to your email. Please verify before you login.",
           });
         },
         (error) => {
